@@ -365,6 +365,59 @@ Or paste your full generated script from the Generate tab."></textarea>
             <small class="form-hint">Applied to all voice profiles for consistent pronunciation</small>
           </div>
 
+          <!-- Character Ethnicity Selector -->
+          <div class="form-group" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #e5e7eb;">
+            <label for="characterEthnicity">👤 Character Ethnicity</label>
+            <select id="characterEthnicity" class="style-select">
+              <optgroup label="🌍 Universal">
+                <option value="universal" selected>🌐 Universal/Ambiguous (Default)</option>
+                <option value="auto">🔍 Auto-detect from Script</option>
+              </optgroup>
+              <optgroup label="🌏 East Asian">
+                <option value="chinese">🇨🇳 Chinese</option>
+                <option value="korean">🇰🇷 Korean</option>
+                <option value="japanese">🇯🇵 Japanese</option>
+                <option value="vietnamese">🇻🇳 Vietnamese</option>
+                <option value="thai">🇹🇭 Thai</option>
+                <option value="filipino">🇵🇭 Filipino</option>
+              </optgroup>
+              <optgroup label="🌏 South Asian">
+                <option value="indian">🇮🇳 Indian</option>
+                <option value="pakistani">🇵🇰 Pakistani</option>
+              </optgroup>
+              <optgroup label="🌍 European">
+                <option value="caucasian">🇪🇺 Caucasian/European</option>
+                <option value="mediterranean">🇮🇹 Mediterranean</option>
+                <option value="eastern_european">🇵🇱 Eastern European</option>
+                <option value="nordic">🇸🇪 Nordic/Scandinavian</option>
+              </optgroup>
+              <optgroup label="🌍 African">
+                <option value="african_american">🇺🇸 African American</option>
+                <option value="west_african">🌍 West African</option>
+                <option value="east_african">🌍 East African</option>
+              </optgroup>
+              <optgroup label="🌎 Latin American">
+                <option value="hispanic">🌎 Hispanic/Latino</option>
+                <option value="mexican">🇲🇽 Mexican</option>
+                <option value="brazilian">🇧🇷 Brazilian</option>
+              </optgroup>
+              <optgroup label="🌍 Middle Eastern">
+                <option value="middle_eastern">🌍 Middle Eastern</option>
+                <option value="persian">🇮🇷 Persian/Iranian</option>
+                <option value="turkish">🇹🇷 Turkish</option>
+              </optgroup>
+              <optgroup label="🌎 Indigenous">
+                <option value="native_american">🪶 Native American</option>
+                <option value="pacific_islander">🌴 Pacific Islander</option>
+              </optgroup>
+              <optgroup label="🌐 Mixed Heritage">
+                <option value="mixed_asian_caucasian">Mixed Asian-Caucasian</option>
+                <option value="mixed_african_caucasian">Mixed African-Caucasian</option>
+              </optgroup>
+            </select>
+            <small class="form-hint">Ensures consistent character appearance across all scenes</small>
+          </div>
+
           <!-- Visual Style (Required) - ENHANCED -->
           <div class="form-group">
             <label for="veoVisualStyle">
