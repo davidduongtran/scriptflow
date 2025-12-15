@@ -6107,6 +6107,34 @@ function combineAndDisplayBatches() {
 
   console.log(`✅ Final combined: ${finalPrompts.length} prompts, scenes: [${sceneNums.join(', ')}]`);
 
+  // ✅ GAP DETECTION: Check for missing scenes
+  if (sceneNums.length > 0) {
+    const minScene = sceneNums[0];
+    const maxScene = sceneNums[sceneNums.length - 1];
+    const expectedCount = maxScene - minScene + 1;
+
+    if (sceneNums.length !== expectedCount) {
+      // Find missing scene numbers
+      const missing = [];
+      for (let i = minScene; i <= maxScene; i++) {
+        if (!sceneNums.includes(i)) missing.push(i);
+      }
+
+      console.warn(`⚠️ GAP DETECTED: Missing ${missing.length} scenes!`);
+      console.warn(`⚠️ Missing scenes: [${missing.join(', ')}]`);
+
+      // Show warning in VEO log for user visibility
+      if (typeof veoLog === 'function') {
+        if (missing.length <= 20) {
+          veoLog(`⚠️ WARNING: Missing ${missing.length} scenes: ${missing.join(', ')}`, 'warn');
+        } else {
+          veoLog(`⚠️ WARNING: Missing ${missing.length} scenes! First 10: ${missing.slice(0, 10).join(', ')}...`, 'warn');
+        }
+        veoLog(`⚠️ This may be due to Gemini token limits. Consider regenerating missing scenes.`, 'warn');
+      }
+    }
+  }
+
   // ✅ Apply On-Screen Text Filter for VEO compatibility
   const filterResult = filterOnScreenText(finalPrompts);
   finalPrompts = filterResult.filteredPrompts;
@@ -6135,8 +6163,24 @@ function combineAndDisplayBatches() {
     const maxScene = sceneNums[sceneNums.length - 1];
     const totalDuration = finalPrompts.length * 8;
 
-    document.getElementById('veoStats').textContent =
-      `✅ ${finalPrompts.length} prompts (Scene ${String(minScene).padStart(2, '0')}-${String(maxScene).padStart(2, '0')}) | ${formatDuration(totalDuration)}`;
+    // Check for gaps and add CAPS warning if missing scenes
+    const expectedCount = maxScene - minScene + 1;
+    let statsHtml = `✅ ${finalPrompts.length} prompts (Scene ${String(minScene).padStart(2, '0')}-${String(maxScene).padStart(2, '0')}) | ${formatDuration(totalDuration)}`;
+
+    if (sceneNums.length !== expectedCount) {
+      // Find missing scenes
+      const missing = [];
+      for (let i = minScene; i <= maxScene; i++) {
+        if (!sceneNums.includes(i)) missing.push(i);
+      }
+      // Add CAPS warning
+      const missingText = missing.length <= 10
+        ? missing.join(', ')
+        : `${missing.slice(0, 10).join(', ')}...`;
+      statsHtml += `<br><span style="color: #dc2626; font-weight: bold;">⚠️ MISSING SCENES: ${missingText}</span>`;
+    }
+
+    document.getElementById('veoStats').innerHTML = statsHtml;
   }
 
   chrome.storage.local.set({ veoPrompts: finalPrompts.join('\n\n') });
