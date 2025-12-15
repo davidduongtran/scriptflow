@@ -800,6 +800,127 @@ ${colorPalette}
 `;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// CHARACTER BIBLE ANCHOR SYSTEM
+// Ensures character appearance consistency across all VEO clips
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Comprehensive ethnicity options for character consistency
+ */
+const CHARACTER_ETHNICITY_OPTIONS = {
+  // Broad Categories
+  'auto': { name: 'Auto-detect', description: 'ethnically ambiguous, universal appeal' },
+  'universal': { name: 'Universal/Ambiguous', description: 'ethnically ambiguous, universal appeal' },
+  // East Asian
+  'chinese': { name: 'Chinese', description: 'East Asian Chinese, Han features' },
+  'korean': { name: 'Korean', description: 'Korean, East Asian features' },
+  'japanese': { name: 'Japanese', description: 'Japanese, East Asian features' },
+  'vietnamese': { name: 'Vietnamese', description: 'Vietnamese, Southeast Asian features' },
+  'thai': { name: 'Thai', description: 'Thai, Southeast Asian features' },
+  'filipino': { name: 'Filipino', description: 'Filipino, Southeast Asian features' },
+  // South Asian
+  'indian': { name: 'Indian', description: 'Indian South Asian, brown skin' },
+  'pakistani': { name: 'Pakistani', description: 'Pakistani South Asian features' },
+  // European
+  'caucasian': { name: 'Caucasian/European', description: 'European Caucasian, fair skin' },
+  'mediterranean': { name: 'Mediterranean', description: 'Mediterranean European, olive skin' },
+  'eastern_european': { name: 'Eastern European', description: 'Eastern European, Slavic features' },
+  'nordic': { name: 'Nordic/Scandinavian', description: 'Nordic, fair skin, light features' },
+  // African
+  'african_american': { name: 'African American', description: 'African American, dark brown skin' },
+  'west_african': { name: 'West African', description: 'West African features' },
+  'east_african': { name: 'East African', description: 'East African, Ethiopian/Somali features' },
+  // Latin American
+  'hispanic': { name: 'Hispanic/Latino', description: 'Hispanic Latino, diverse skin tones' },
+  'mexican': { name: 'Mexican', description: 'Mexican, mestizo features' },
+  'brazilian': { name: 'Brazilian', description: 'Brazilian, diverse mixed features' },
+  // Middle Eastern
+  'middle_eastern': { name: 'Middle Eastern', description: 'Middle Eastern Arab features' },
+  'persian': { name: 'Persian/Iranian', description: 'Persian Iranian features' },
+  'turkish': { name: 'Turkish', description: 'Turkish features' },
+  // Indigenous
+  'native_american': { name: 'Native American', description: 'Native American Indigenous features' },
+  'pacific_islander': { name: 'Pacific Islander', description: 'Polynesian Pacific Islander features' },
+  // Mixed
+  'mixed_asian_caucasian': { name: 'Mixed Asian-Caucasian', description: 'mixed Asian and Caucasian heritage' },
+  'mixed_african_caucasian': { name: 'Mixed African-Caucasian', description: 'mixed African and Caucasian heritage' }
+};
+
+/**
+ * Generate Character Bible Anchor for appearance consistency
+ */
+function getCharacterBibleAnchor(options = {}) {
+  const {
+    ethnicity = 'universal',
+    gender = 'male',
+    ageRange = 'late 40s',
+    eyeColor = 'brown',
+    hairColor = 'dark brown',
+    hairStyle = 'short, neatly styled',
+    facialHair = 'none (clean-shaven)',
+    build = 'medium, proportional',
+    outfit = 'dark charcoal grey crewneck sweater',
+    accessories = 'no glasses, no hat, no visible jewelry',
+    faceDescription = 'weathered, thoughtful, pronounced cheekbones',
+    characterName = 'THE SPEAKER'
+  } = options;
+
+  const ethnicityInfo = CHARACTER_ETHNICITY_OPTIONS[ethnicity] || CHARACTER_ETHNICITY_OPTIONS['universal'];
+  const ethnicityDesc = ethnicityInfo.description || 'universal appeal';
+
+  return `
+## 🎭 CHARACTER BIBLE ANCHOR (MANDATORY CONSISTENCY)
+
+**CRITICAL:** VEO 3 generates each clip INDEPENDENTLY with NO memory.
+This Character Bible MUST be applied to EVERY scene for appearance consistency.
+
+### Primary Character: [${characterName}]
+\`\`\`
+ETHNICITY: ${ethnicityDesc}
+GENDER: ${gender}
+AGE: ${ageRange}
+BUILD: ${build}
+FACE: ${faceDescription}
+EYES: ${eyeColor}
+HAIR: ${hairColor}, ${hairStyle}
+FACIAL HAIR: ${facialHair}
+OUTFIT: ${outfit}
+ACCESSORIES: ${accessories}
+\`\`\`
+
+### CHARACTER RULES (CRITICAL)
+1. ✅ Use EXACT same description in EVERY scene
+2. ✅ Reference as "[${characterName}]" - copy ethnicity, eyes, hair VERBATIM
+3. ❌ NO outfit changes, NO appearance drift, NO gender switches
+
+### Per-Scene Format:
+[${characterName}]: ${gender} ${ageRange}, ${ethnicityDesc}, ${eyeColor} eyes, ${hairColor} hair, ${outfit}. ${accessories}.
+
+---
+`;
+}
+
+/**
+ * Get current character configuration from UI (with fallbacks)
+ */
+function getCurrentCharacterConfig() {
+  return {
+    ethnicity: document.getElementById('characterEthnicity')?.value || 'universal',
+    gender: document.getElementById('characterGender')?.value || 'male',
+    ageRange: document.getElementById('characterAge')?.value || 'late 40s',
+    eyeColor: document.getElementById('characterEyeColor')?.value || 'brown',
+    hairColor: document.getElementById('characterHairColor')?.value || 'dark brown',
+    hairStyle: document.getElementById('characterHairStyle')?.value || 'short, neatly styled',
+    facialHair: document.getElementById('characterFacialHair')?.value || 'none (clean-shaven)',
+    build: document.getElementById('characterBuild')?.value || 'medium',
+    outfit: document.getElementById('characterOutfit')?.value || 'dark charcoal grey sweater',
+    accessories: document.getElementById('characterAccessories')?.value || 'no glasses, no hat, no jewelry',
+    faceDescription: document.getElementById('characterFace')?.value || 'thoughtful, pronounced cheekbones',
+    characterName: document.getElementById('characterName')?.value || 'THE SPEAKER'
+  };
+}
+
 // Current voice configuration state
 let currentVoiceConfig = null;
 
@@ -5057,6 +5178,20 @@ function buildMasterPrompt(topic, numPrompts, videoStyle, dialogueLanguage, subt
   }
   // ===== END STYLE ANCHOR =====
 
+  // ===== CHARACTER BIBLE INTEGRATION =====
+  let characterBibleBlock = '';
+  let characterCompactSpec = 'male, late 40s, universal appeal, brown eyes'; // default fallback
+  try {
+    const charConfig = getCurrentCharacterConfig();
+    characterBibleBlock = getCharacterBibleAnchor(charConfig);
+    const ethnicityInfo = CHARACTER_ETHNICITY_OPTIONS[charConfig.ethnicity] || CHARACTER_ETHNICITY_OPTIONS['universal'];
+    characterCompactSpec = `${charConfig.gender}, ${charConfig.ageRange}, ${ethnicityInfo.description}, ${charConfig.eyeColor} eyes, ${charConfig.hairColor} hair, ${charConfig.outfit}`;
+    console.log('🎭 Character Bible injected:', charConfig.characterName, '-', ethnicityInfo.name);
+  } catch (e) {
+    console.warn('⚠️ Character Bible not available (using defaults):', e.message);
+  }
+  // ===== END CHARACTER BIBLE =====
+
   const isFirstBatch = startSceneNum === 1;
   const totalScenes = numPrompts + startSceneNum - 1;
 
@@ -5079,6 +5214,8 @@ function buildMasterPrompt(topic, numPrompts, videoStyle, dialogueLanguage, subt
 ${voiceAnchorBlock}
 
 ${styleAnchorBlock}
+
+${characterBibleBlock}
 
 ## ⚠️ CRITICAL: BATCH CONTENT SEGMENTATION
 ${isFirstBatch ? `**THIS IS BATCH 1 - COVER THE BEGINNING OF THE CONTENT**
@@ -6107,37 +6244,14 @@ function combineAndDisplayBatches() {
 
   console.log(`✅ Final combined: ${finalPrompts.length} prompts, scenes: [${sceneNums.join(', ')}]`);
 
-  // ✅ GAP DETECTION: Check for missing scenes
-  if (sceneNums.length > 0) {
-    const minScene = sceneNums[0];
-    const maxScene = sceneNums[sceneNums.length - 1];
-    const expectedCount = maxScene - minScene + 1;
-
-    if (sceneNums.length !== expectedCount) {
-      // Find missing scene numbers
-      const missing = [];
-      for (let i = minScene; i <= maxScene; i++) {
-        if (!sceneNums.includes(i)) missing.push(i);
-      }
-
-      console.warn(`⚠️ GAP DETECTED: Missing ${missing.length} scenes!`);
-      console.warn(`⚠️ Missing scenes: [${missing.join(', ')}]`);
-
-      // Show warning in VEO log for user visibility
-      if (typeof veoLog === 'function') {
-        if (missing.length <= 20) {
-          veoLog(`⚠️ WARNING: Missing ${missing.length} scenes: ${missing.join(', ')}`, 'warn');
-        } else {
-          veoLog(`⚠️ WARNING: Missing ${missing.length} scenes! First 10: ${missing.slice(0, 10).join(', ')}...`, 'warn');
-        }
-        veoLog(`⚠️ This may be due to Gemini token limits. Consider regenerating missing scenes.`, 'warn');
-      }
-    }
-  }
-
   // ✅ Apply On-Screen Text Filter for VEO compatibility
   const filterResult = filterOnScreenText(finalPrompts);
   finalPrompts = filterResult.filteredPrompts;
+
+  // ✅ Apply HEX Code Translation - Convert any #XXXXXX to natural color names
+  // VEO renders raw hex codes as visible text, but understands "bright blue", "fresh green" etc.
+  finalPrompts = finalPrompts.map(prompt => replaceHexWithColorNames(prompt));
+  console.log('🎨 Applied HEX → natural color translation to all prompts');
 
   // Append overflow texts to Extended Text field (Post-Production)
   if (filterResult.extendedTextOverflow.length > 0) {
@@ -6163,24 +6277,8 @@ function combineAndDisplayBatches() {
     const maxScene = sceneNums[sceneNums.length - 1];
     const totalDuration = finalPrompts.length * 8;
 
-    // Check for gaps and add CAPS warning if missing scenes
-    const expectedCount = maxScene - minScene + 1;
-    let statsHtml = `✅ ${finalPrompts.length} prompts (Scene ${String(minScene).padStart(2, '0')}-${String(maxScene).padStart(2, '0')}) | ${formatDuration(totalDuration)}`;
-
-    if (sceneNums.length !== expectedCount) {
-      // Find missing scenes
-      const missing = [];
-      for (let i = minScene; i <= maxScene; i++) {
-        if (!sceneNums.includes(i)) missing.push(i);
-      }
-      // Add CAPS warning
-      const missingText = missing.length <= 10
-        ? missing.join(', ')
-        : `${missing.slice(0, 10).join(', ')}...`;
-      statsHtml += `<br><span style="color: #dc2626; font-weight: bold;">⚠️ MISSING SCENES: ${missingText}</span>`;
-    }
-
-    document.getElementById('veoStats').innerHTML = statsHtml;
+    document.getElementById('veoStats').textContent =
+      `✅ ${finalPrompts.length} prompts (Scene ${String(minScene).padStart(2, '0')}-${String(maxScene).padStart(2, '0')}) | ${formatDuration(totalDuration)}`;
   }
 
   chrome.storage.local.set({ veoPrompts: finalPrompts.join('\n\n') });
