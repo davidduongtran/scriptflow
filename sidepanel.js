@@ -182,6 +182,74 @@ const NICHE_SIGNALS = {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 /**
+ * VOICE ACCENT OPTIONS
+ * Default: American Standard (most YouTube content)
+ * Accent specification improves VEO voice consistency
+ */
+const VOICE_ACCENT_OPTIONS = {
+  'american_standard': {
+    id: 'american_standard',
+    name: 'American Standard',
+    shortName: 'US',
+    description: 'Clear American English, neutral midwest accent',
+    spec: 'American English accent, clear neutral pronunciation',
+    isDefault: true
+  },
+  'american_southern': {
+    id: 'american_southern',
+    name: 'American Southern',
+    shortName: 'US South',
+    description: 'Warm Southern American accent',
+    spec: 'Southern American accent, warm drawl, friendly intonation'
+  },
+  'british_rp': {
+    id: 'british_rp',
+    name: 'British RP',
+    shortName: 'UK RP',
+    description: 'British Received Pronunciation (formal)',
+    spec: 'British RP accent, formal refined pronunciation, authoritative'
+  },
+  'british_casual': {
+    id: 'british_casual',
+    name: 'British Casual',
+    shortName: 'UK Casual',
+    description: 'Modern British English, approachable',
+    spec: 'British accent, modern casual pronunciation, approachable'
+  },
+  'australian': {
+    id: 'australian',
+    name: 'Australian',
+    shortName: 'AU',
+    description: 'Australian English accent',
+    spec: 'Australian accent, relaxed friendly intonation'
+  },
+  'indian_english': {
+    id: 'indian_english',
+    name: 'Indian English',
+    shortName: 'IN',
+    description: 'Indian English accent',
+    spec: 'Indian English accent, clear articulate pronunciation'
+  },
+  'international': {
+    id: 'international',
+    name: 'International/Neutral',
+    shortName: 'Neutral',
+    description: 'Neutral English for global audiences',
+    spec: 'neutral international English, clear universal pronunciation'
+  }
+};
+
+/**
+ * Get current accent selection (defaults to American Standard)
+ */
+function getCurrentAccent() {
+  const accentSelect = document.getElementById('voiceAccent');
+  const accentId = accentSelect?.value || 'american_standard';
+  return VOICE_ACCENT_OPTIONS[accentId] || VOICE_ACCENT_OPTIONS['american_standard'];
+}
+
+
+/**
  * VOICE PROFILE DATABASE
  * Complete voice specifications for VEO consistency
  */
@@ -966,18 +1034,25 @@ function createVoiceConfiguration(formatId, customSlots = {}) {
 function getMultiVoiceAnchor(voiceConfig) {
   const { formatName, voiceCount, slots, globalInstructions, exampleExchange } = voiceConfig;
 
+  // Get current accent selection
+  const accent = getCurrentAccent();
+  const accentSpec = accent.spec;
+
   let slotSpecs = '';
   let voiceTagReference = '';
 
   Object.values(slots).forEach((slot, index) => {
+    // Combine voice spec with accent
+    const voiceWithAccent = `${slot.compactSpec}, ${accentSpec}`;
+
     slotSpecs += `
 ### Voice ${index + 1}: ${slot.label} [${slot.role}]
 - **Role:** ${slot.responsibilities || slot.label}
 - **Profile:** ${slot.profile?.name || 'Custom'}
-- **Voice Specification:** ${slot.compactSpec}
+- **Voice Specification:** ${voiceWithAccent}
 - **Dialogue Format:** \`[${slot.customName || slot.role}]: "dialogue..."\`
 `;
-    voiceTagReference += `[VOICE_${slot.role}: ${slot.compactSpec}]\n`;
+    voiceTagReference += `[VOICE_${slot.role}: ${voiceWithAccent}]\n`;
   });
 
   return `
@@ -1037,6 +1112,132 @@ function updateVoiceConfiguration() {
   currentVoiceConfig = createVoiceConfiguration(formatId, customSlots);
   console.log('🎙️ Voice config updated:', currentVoiceConfig.formatName, '-', currentVoiceConfig.voiceCount, 'voices');
   return currentVoiceConfig;
+}
+
+/**
+ * Parse voice direction from script header
+ * Extracts: **Voice:** Deep male voice, slow, calm, authoritative
+ * Returns: { gender, tone[], pace, descriptors[], rawText }
+ */
+function parseScriptVoiceDirection(scriptText) {
+  if (!scriptText) return null;
+
+  // Match **Voice:** or - **Voice:** or Voice: patterns
+  const voiceMatch = scriptText.match(/\*?\*?Voice\*?\*?:?\s*([^\n\r]+)/i);
+  if (!voiceMatch) return null;
+
+  const rawText = voiceMatch[1].trim();
+  const lowerText = rawText.toLowerCase();
+
+  // Extract gender
+  let gender = 'neutral';
+  if (/\bmale\b|\bman\b|\bmasculine\b|\bbaritone\b/.test(lowerText)) gender = 'male';
+  else if (/\bfemale\b|\bwoman\b|\bfeminine\b|\bsoprano\b/.test(lowerText)) gender = 'female';
+
+  // Extract tone keywords
+  const toneKeywords = [];
+  const tonePatterns = [
+    { pattern: /calm|soothing|peaceful|relaxed/i, tone: 'calm' },
+    { pattern: /authoritative|commanding|powerful|serious/i, tone: 'authoritative' },
+    { pattern: /warm|friendly|approachable|welcoming/i, tone: 'warm' },
+    { pattern: /deep|low|baritone|bass/i, tone: 'deep' },
+    { pattern: /energetic|upbeat|dynamic|lively/i, tone: 'energetic' },
+    { pattern: /mysterious|intriguing|dark|conspiratorial/i, tone: 'mysterious' },
+    { pattern: /professional|confident|business|corporate/i, tone: 'professional' },
+    { pattern: /empathetic|reassuring|therapeutic|gentle/i, tone: 'empathetic' },
+    { pattern: /wise|sagely|elder|thoughtful/i, tone: 'wise' }
+  ];
+  tonePatterns.forEach(({ pattern, tone }) => {
+    if (pattern.test(lowerText)) toneKeywords.push(tone);
+  });
+
+  // Extract pace
+  let pace = 'medium';
+  if (/slow|deliberate|measured|unhurried/.test(lowerText)) pace = 'slow';
+  else if (/fast|quick|rapid|energetic/.test(lowerText)) pace = 'fast';
+
+  return { gender, tones: toneKeywords, pace, rawText };
+}
+
+/**
+ * Match voice direction to best profile with scoring
+ * @param {object} voiceDirection - From parseScriptVoiceDirection
+ * @param {string} niche - Content niche for recommendations
+ * @returns {object} { profileId, profile, score, reason }
+ */
+function matchVoiceToProfile(voiceDirection, niche = 'general') {
+  if (!voiceDirection) return null;
+
+  const scores = {};
+  const reasons = {};
+
+  Object.entries(VOICE_PROFILES).forEach(([profileId, profile]) => {
+    let score = 0;
+    const matchReasons = [];
+
+    // Gender match (40 points)
+    if (voiceDirection.gender === profile.gender) {
+      score += 40;
+      matchReasons.push(`gender: ${profile.gender}`);
+    } else if (voiceDirection.gender === 'neutral' || profile.gender === 'neutral') {
+      score += 20; // Partial match for neutral
+    }
+
+    // Tone match (30 points - up to 10 per matching tone)
+    voiceDirection.tones.forEach(tone => {
+      const profileDesc = (profile.fullSpec + ' ' + profile.description).toLowerCase();
+      if (profileDesc.includes(tone)) {
+        score += 10;
+        matchReasons.push(`tone: ${tone}`);
+      }
+    });
+    score = Math.min(score, 70); // Cap at gender + tone max
+
+    // Niche recommendation (20 points)
+    const nicheRec = NICHE_FORMAT_RECOMMENDATIONS[niche];
+    if (nicheRec && nicheRec.primaryVoice === profileId) {
+      score += 20;
+      matchReasons.push(`niche:${niche} recommended`);
+    }
+
+    // Pace match (10 points)
+    const profileSpec = profile.fullSpec.toLowerCase();
+    if ((voiceDirection.pace === 'slow' && /slow|deliberate|measured/.test(profileSpec)) ||
+      (voiceDirection.pace === 'fast' && /fast|quick|energetic/.test(profileSpec))) {
+      score += 10;
+      matchReasons.push(`pace: ${voiceDirection.pace}`);
+    }
+
+    scores[profileId] = score;
+    reasons[profileId] = matchReasons;
+  });
+
+  // Find best match
+  const bestProfileId = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  const bestScore = scores[bestProfileId];
+  const bestProfile = VOICE_PROFILES[bestProfileId];
+
+  return {
+    profileId: bestProfileId,
+    profile: bestProfile,
+    score: bestScore,
+    confidence: Math.min(Math.round(bestScore / 100 * 100), 100),
+    reasons: reasons[bestProfileId]
+  };
+}
+
+/**
+ * Get enhanced voice specification with accent included
+ * @param {string} profileId - Voice profile ID
+ * @param {string} accentId - Accent ID (defaults to american_standard)
+ * @returns {string} Complete voice spec with accent
+ */
+function getEnhancedVoiceSpec(profileId, accentId = 'american_standard') {
+  const profile = VOICE_PROFILES[profileId] || VOICE_PROFILES['deep_authoritative_male'];
+  const accent = VOICE_ACCENT_OPTIONS[accentId] || VOICE_ACCENT_OPTIONS['american_standard'];
+
+  // Combine profile compactSpec with accent
+  return `${profile.compactSpec}, ${accent.spec}`;
 }
 
 /**
