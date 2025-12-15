@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "FinRich Script",
+  "version": "1.6.4",
+  "description": "AI-Powered YouTube Script & VEO 3 Prompt Generation",
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "activeTab",
+    "alarms",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://api.anthropic.com/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "FinRich Script v1.6.4",
+    "default_icon": "icons/icon48.png"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "externally_connectable": {
+    "ids": [
+      "*"
+    ]
+  }
+}

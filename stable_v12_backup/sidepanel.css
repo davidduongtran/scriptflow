@@ -1,0 +1,1045 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #f5f7fa;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: white;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 20px;
+  flex-shrink: 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 11px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.version-info {
+  display: flex;
+  align-items: center;
+}
+
+.version {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* TABS STYLING */
+.tabs {
+  display: flex;
+  gap: 0;
+  background: white;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.tab {
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  width: auto;
+  margin: 0;
+}
+
+.tab:hover {
+  color: #667eea;
+}
+
+.tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+/* VEO Tab special styling */
+.tab[data-tab="veo-prompts"].active {
+  color: #10b981;
+  border-bottom-color: #10b981;
+}
+
+.tab[data-tab="veo-prompts"]:hover {
+  color: #10b981;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* SECTION STYLING */
+.section {
+  background: #f8f9fa;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+/* VEO section green accent */
+#veo-prompts .section {
+  border-left-color: #10b981;
+}
+
+.section h2 {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+#veo-prompts .section h2 {
+  color: #10b981;
+}
+
+/* FORM STYLING */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+  font-size: 13px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  color: #333;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+#veo-prompts input:focus,
+#veo-prompts select:focus,
+#veo-prompts textarea:focus {
+  border-color: #10b981;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+/* CHECKBOX STYLING */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #667eea;
+  margin: 0;
+}
+
+#veo-prompts .checkbox-label input[type="checkbox"] {
+  accent-color: #10b981;
+}
+
+.checkbox-label span {
+  color: #333;
+  font-size: 14px;
+}
+
+/* REQUIRED/OPTIONAL BADGES */
+.required-badge {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.optional-badge {
+  background: #e0e0e0;
+  color: #666;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  font-weight: 500;
+}
+
+/* DURATION DISPLAY */
+.duration-display {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #059669;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* BUTTONS */
+.btn,
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-primary,
+#generateBtn,
+#testApiBtn,
+#saveSettingsBtn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover,
+#generateBtn:hover,
+#testApiBtn:hover,
+#saveSettingsBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled,
+#generateBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* VEO Primary Button (Green) */
+.btn-primary-veo,
+#generateVeoBtn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.btn-primary-veo:hover,
+#generateVeoBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.btn-primary-veo:disabled,
+#generateVeoBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Secondary Buttons */
+.btn-secondary,
+#copyScriptBtn,
+#exportScriptBtn,
+#copyTopicBtn,
+#exportTopicBtn,
+#copyPromptsBtn,
+#exportPromptsBtn {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+#veo-prompts .btn-secondary {
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.btn-secondary:hover {
+  background: #f8f9fa;
+}
+
+/* Batch Buttons */
+.batch-button {
+  background: white;
+  color: #8b5cf6;
+  border: 2px solid #8b5cf6;
+  font-size: 12px !important;
+  padding: 8px 12px !important;
+}
+
+.batch-button:hover {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.batch-button.completed {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border-color: #10b981;
+}
+
+.batch-button.retried {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border-color: #f59e0b;
+}
+
+.batch-button:disabled {
+  opacity: 0.6;
+}
+
+/* STATUS / MESSAGES */
+.api-status {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  display: none;
+  font-size: 13px;
+  border-left: 4px solid transparent;
+}
+
+.api-status.show {
+  display: block;
+}
+
+.api-status.success {
+  background: #d4edda;
+  color: #155724;
+  border-left-color: #28a745;
+}
+
+.api-status.error {
+  background: #f8d7da;
+  color: #721c24;
+  border-left-color: #dc3545;
+}
+
+.api-status.loading {
+  background: #cfe8fc;
+  color: #004085;
+  border-left-color: #0066cc;
+}
+
+.api-status.info {
+  background: #e7f3ff;
+  color: #004085;
+  border-left-color: #0066cc;
+}
+
+.api-status.warn {
+  background: #fff3cd;
+  color: #856404;
+  border-left-color: #ffc107;
+}
+
+/* PROGRESS BAR */
+#progressContainer,
+#veoProgressContainer {
+  padding: 0;
+  margin: 16px 0;
+  display: none;
+}
+
+#progressContainer.show,
+#veoProgressContainer.show {
+  display: block;
+}
+
+/* LOG DISPLAY */
+.log-display {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.log-entry {
+  padding: 4px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-entry.success {
+  color: #155724;
+}
+
+.log-entry.error {
+  color: #721c24;
+}
+
+.log-entry.info {
+  color: #004085;
+}
+
+.log-entry.warn {
+  color: #856404;
+}
+
+.log-entry.system {
+  color: #666;
+  font-style: italic;
+}
+
+/* SUGGESTIONS BOX */
+.suggestion-box {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-left: 4px solid #ffc107;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #856404;
+}
+
+/* STATS GRID */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.stat {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  border-left: 3px solid #667eea;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+/* SCRIPT VIEWER */
+#scriptViewer {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #555;
+  display: none;
+  white-space: pre-wrap;
+}
+
+#scriptViewer.show {
+  display: block;
+}
+
+#scriptStats {
+  display: none;
+}
+
+#scriptStats.show {
+  display: block;
+  margin-top: 16px;
+}
+
+#outputSection {
+  display: none;
+}
+
+/* VEO OUTPUT */
+#veoPromptsOutput {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
+  resize: vertical;
+}
+
+/* STYLE SELECT ANIMATION */
+.style-select.style-reminder {
+  animation: pulse-border 1s ease-in-out infinite;
+  border-color: #8b5cf6;
+}
+
+@keyframes pulse-border {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+  }
+}
+
+/* AUTO-CALCULATED ANIMATION */
+.auto-calculated {
+  animation: highlight-green 3s ease-out;
+}
+
+@keyframes highlight-green {
+  0% {
+    background: rgba(16, 185, 129, 0.3);
+    border-color: #10b981;
+  }
+
+  100% {
+    background: white;
+    border-color: #e0e0e0;
+  }
+}
+
+/* FOOTER */
+footer {
+  padding: 16px 20px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  font-size: 11px;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.footer-credits {
+  color: #999;
+  font-size: 11px;
+}
+
+/* UTILITIES */
+.hidden {
+  display: none !important;
+}
+
+small {
+  font-size: 12px;
+  color: #999;
+}
+
+small a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+small a:hover {
+  text-decoration: underline;
+}
+
+/* SCROLLBAR STYLING */
+.main-content::-webkit-scrollbar,
+.log-display::-webkit-scrollbar,
+#scriptViewer::-webkit-scrollbar,
+#veoPromptsOutput::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track,
+.log-display::-webkit-scrollbar-track,
+#scriptViewer::-webkit-scrollbar-track,
+#veoPromptsOutput::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.main-content::-webkit-scrollbar-thumb,
+.log-display::-webkit-scrollbar-thumb,
+#scriptViewer::-webkit-scrollbar-thumb,
+#veoPromptsOutput::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover,
+.log-display::-webkit-scrollbar-thumb:hover,
+#scriptViewer::-webkit-scrollbar-thumb:hover,
+#veoPromptsOutput::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ANIMATIONS */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.status-message {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .logo-section {
+    width: 100%;
+  }
+
+  .version-info {
+    justify-content: center;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  button,
+  .btn {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+
+  .tabs {
+    padding: 0 10px;
+  }
+
+  .tab {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+/* =============================================
+   CLONE MODE DISPLAY STYLES (NEW in v12)
+   ============================================= */
+
+.clone-mode-display {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f3ff 100%);
+  border-left-color: #8b5cf6;
+}
+
+.clone-mode-display h2 {
+  color: #8b5cf6;
+  font-size: 15px;
+}
+
+.clone-mode-display h2 span {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.blueprint-display-card {
+  background: white;
+  border: 1px solid #e0e6ff;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.blueprint-source {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.blueprint-row-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.bp-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.bp-label {
+  color: #666;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.bp-value {
+  color: #333;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.blueprint-structure {
+  padding: 8px;
+  background: #f0f3ff;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.blueprint-structure .bp-value {
+  display: block;
+  margin-top: 4px;
+  color: #8b5cf6;
+}
+
+/* =============================================
+   CLONE MODE SELECTOR STYLES (Interactive)
+   ============================================= */
+
+.clone-mode-selector {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f3ff 100%);
+  border: 1px solid #e0e6ff;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+.clone-mode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.clone-mode-label {
+  font-weight: 600;
+  color: #8b5cf6;
+  font-size: 13px;
+}
+
+.analyzer-source-info {
+  font-size: 11px;
+  color: #666;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clone-mode-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.clone-mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px;
+  background: white;
+  border: 2px solid #e0e6ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.clone-mode-card:hover {
+  border-color: #8b5cf6;
+  background: #faf8ff;
+  transform: translateY(-2px);
+}
+
+.clone-mode-card.active {
+  border-color: #8b5cf6;
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  color: white;
+}
+
+.clone-mode-card .mode-icon {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.clone-mode-card .mode-name {
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.clone-mode-card .mode-desc {
+  font-size: 9px;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.clone-mode-card.active .mode-desc {
+  opacity: 0.9;
+}
+
+/* 100% Clone - special styling when active */
+.clone-mode-card[data-mode="100"].active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* 50% Remix - special styling when active */
+.clone-mode-card[data-mode="50"].active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Blueprint Summary in Clone Mode Selector */
+.blueprint-summary {
+  background: white;
+  border: 1px solid #e0e6ff;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.blueprint-summary .blueprint-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.blueprint-summary .bp-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.blueprint-summary .bp-label {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.blueprint-summary .bp-value {
+  font-size: 10px;
+  color: #8b5cf6;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* =============================================
+   VISUAL RENDERING SYSTEM v2.0 STYLES
+   Rank badges, style preview, niche info
+   ============================================= */
+
+/* Rank Badge Styles */
+.rank-badge {
+  background: #6b7280;
+  color: white;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.rank-badge.top-1 {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.rank-badge.top-3 {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 8px 2px rgba(16, 185, 129, 0.3);
+  }
+}
+
+/* Form Hint Styles */
+.form-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Style Preview Panel */
+.style-preview {
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #8b5cf6;
+  padding: 12px;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.style-preview .preview-title {
+  font-weight: 600;
+  color: #8b5cf6;
+  margin-bottom: 4px;
+}
+
+.style-preview .technical-dna {
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Niche Info Card */
+#nicheInfoCard {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+#nicheInfoCard h4 {
+  color: #8b5cf6;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+#nicheInfoCard .niche-top-styles {
+  font-size: 12px;
+  color: #64748b;
+}

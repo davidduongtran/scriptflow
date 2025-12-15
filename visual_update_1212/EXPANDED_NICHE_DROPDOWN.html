@@ -1,0 +1,264 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+     EXPANDED NICHE DROPDOWN v2.0
+     Supports Core + Extended niches with auto-detection fallback
+     
+     INTEGRATION: Replace the niche selector in HTML_DROPDOWN_UPDATE.html
+═══════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Niche Selector - EXPANDED -->
+<div class="form-group" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #e5e7eb;">
+  <label for="contentNiche">
+    🎯 Content Niche
+    <span id="nicheAutoDetect" style="margin-left: 8px; font-size: 11px; color: #8b5cf6; cursor: pointer;" title="Auto-detect from script">
+      ✨ Auto-detect
+    </span>
+  </label>
+  <select id="contentNiche" class="style-select">
+    
+    <!-- Core Niches (Fully Optimized) -->
+    <optgroup label="⭐ Core Niches (Fully Optimized)">
+      <option value="finance" selected>💰 Personal Finance</option>
+      <option value="psychology">🧠 Psychology</option>
+    </optgroup>
+    
+    <!-- Extended Niches (Basic Optimization) -->
+    <optgroup label="📚 Education & Learning">
+      <option value="education">📚 Education</option>
+      <option value="science">🔬 Science</option>
+      <option value="history">🏛️ History</option>
+    </optgroup>
+    
+    <optgroup label="💼 Business & Tech">
+      <option value="business">💼 Business & Entrepreneurship</option>
+      <option value="technology">💻 Technology</option>
+    </optgroup>
+    
+    <optgroup label="🎮 Entertainment">
+      <option value="gaming">🎮 Gaming</option>
+      <option value="lifestyle">🌟 Lifestyle</option>
+    </optgroup>
+    
+    <optgroup label="💪 Health & Wellness">
+      <option value="health">💪 Health & Fitness</option>
+      <option value="spirituality">🧘 Spirituality</option>
+      <option value="motivation">🔥 Motivation & Self-Help</option>
+    </optgroup>
+    
+    <optgroup label="🍳 Food & Travel">
+      <option value="cooking">🍳 Cooking & Food</option>
+      <option value="travel">✈️ Travel</option>
+    </optgroup>
+    
+    <optgroup label="👨‍👩‍👧‍👦 Family">
+      <option value="kids">👨‍👩‍👧‍👦 Kids & Family</option>
+    </optgroup>
+    
+    <!-- Custom/Auto -->
+    <optgroup label="🤖 Auto-Detection">
+      <option value="auto">🤖 Auto-detect from content</option>
+    </optgroup>
+    
+  </select>
+  <small class="form-hint" id="nicheHint">
+    ⭐ Core niches have full optimization. Extended niches use AI-powered suggestions.
+  </small>
+</div>
+
+<!-- Niche Info Card (shows when niche selected) -->
+<div id="nicheInfoCard" class="niche-info-card" style="display: none; margin-bottom: 16px; padding: 12px; background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 8px; border-left: 4px solid #8b5cf6;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+    <span id="nicheInfoTitle" style="font-weight: 600; color: #7c3aed;">💰 Personal Finance</span>
+    <span id="nicheTierBadge" style="font-size: 10px; padding: 2px 8px; border-radius: 10px; background: #8b5cf6; color: white;">Core</span>
+  </div>
+  <div style="font-size: 12px; color: #64748b;">
+    <strong>Top Styles:</strong> <span id="nicheTopStyles">3D Animation, Isometric 3D, Whiteboard</span>
+  </div>
+  <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
+    <strong>Color Mood:</strong> <span id="nicheColorMood">Trust & Professional</span>
+    <span id="nicheColorSwatches" style="margin-left: 8px;"></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+     CSS for Niche System
+═══════════════════════════════════════════════════════════════════════════════ -->
+
+<style>
+/* Niche Info Card */
+.niche-info-card {
+  transition: all 0.3s ease;
+}
+
+.niche-info-card:hover {
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+}
+
+/* Color Swatches */
+.color-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 4px;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  vertical-align: middle;
+}
+
+/* Tier Badges */
+.tier-badge-core {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.tier-badge-extended {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.tier-badge-auto {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* Auto-detect link */
+#nicheAutoDetect:hover {
+  text-decoration: underline;
+}
+
+/* Niche-specific option styling */
+#contentNiche option[value="finance"],
+#contentNiche option[value="psychology"] {
+  font-weight: 600;
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+     JavaScript for Niche System Integration
+═══════════════════════════════════════════════════════════════════════════════ -->
+
+<script>
+/**
+ * Update niche info card when niche changes
+ */
+function updateNicheInfoCard() {
+  const nicheSelect = document.getElementById('contentNiche');
+  const infoCard = document.getElementById('nicheInfoCard');
+  const nicheKey = nicheSelect?.value;
+  
+  if (!nicheKey || nicheKey === 'auto') {
+    if (infoCard) infoCard.style.display = 'none';
+    return;
+  }
+  
+  const config = NICHE_DATABASE[nicheKey];
+  if (!config) {
+    if (infoCard) infoCard.style.display = 'none';
+    return;
+  }
+  
+  // Show card
+  if (infoCard) infoCard.style.display = 'block';
+  
+  // Update title
+  const titleEl = document.getElementById('nicheInfoTitle');
+  if (titleEl) titleEl.textContent = `${config.icon} ${config.name}`;
+  
+  // Update tier badge
+  const tierBadge = document.getElementById('nicheTierBadge');
+  if (tierBadge) {
+    tierBadge.textContent = config.tier === 'core' ? '⭐ Core' : '📦 Extended';
+    tierBadge.className = config.tier === 'core' ? 'tier-badge-core' : 'tier-badge-extended';
+  }
+  
+  // Update top styles
+  const topStylesEl = document.getElementById('nicheTopStyles');
+  if (topStylesEl) {
+    topStylesEl.textContent = config.topStyles.slice(0, 3).join(', ');
+  }
+  
+  // Update color mood
+  const colorMoodEl = document.getElementById('nicheColorMood');
+  const defaultPalette = config.colorPalettes[config.defaultPalette];
+  if (colorMoodEl && defaultPalette) {
+    colorMoodEl.textContent = defaultPalette.name;
+  }
+  
+  // Update color swatches
+  const swatchesEl = document.getElementById('nicheColorSwatches');
+  if (swatchesEl && defaultPalette) {
+    swatchesEl.innerHTML = defaultPalette.colors
+      .map(color => `<span class="color-swatch" style="background: ${color};"></span>`)
+      .join('');
+  }
+  
+  // Update style rankings for this niche
+  updateNicheRankings(nicheKey);
+  
+  // Update style preview
+  updateStylePreview();
+}
+
+/**
+ * Auto-detect niche from current script content
+ */
+function autoDetectNiche() {
+  const topicEl = document.getElementById('veoTopic');
+  const content = topicEl?.value || '';
+  
+  if (content.length < 20) {
+    veoLog('⚠️ Need more content to auto-detect niche', 'warn');
+    return;
+  }
+  
+  const suggestion = suggestStyleUniversal(content, null);
+  
+  if (suggestion.detectedNiche) {
+    const nicheSelect = document.getElementById('contentNiche');
+    if (nicheSelect) {
+      nicheSelect.value = suggestion.detectedNiche;
+      updateNicheInfoCard();
+      veoLog(`🎯 Auto-detected niche: ${suggestion.detectedNiche} (${suggestion.nicheConfidence}% confidence)`, 'success');
+    }
+  } else {
+    veoLog('🤖 Could not detect specific niche. Using content-based style suggestion.', 'info');
+  }
+  
+  // Also auto-suggest style
+  autoApplyStyleSuggestion(content);
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+  // Niche change
+  const nicheSelect = document.getElementById('contentNiche');
+  if (nicheSelect) {
+    nicheSelect.addEventListener('change', () => {
+      const value = nicheSelect.value;
+      
+      if (value === 'auto') {
+        autoDetectNiche();
+      } else {
+        updateNicheInfoCard();
+      }
+    });
+  }
+  
+  // Auto-detect link
+  const autoDetectLink = document.getElementById('nicheAutoDetect');
+  if (autoDetectLink) {
+    autoDetectLink.addEventListener('click', autoDetectNiche);
+  }
+  
+  // Topic change - suggest style
+  const topicEl = document.getElementById('veoTopic');
+  if (topicEl) {
+    topicEl.addEventListener('blur', () => {
+      const content = topicEl.value;
+      if (content.length >= 50) {
+        autoApplyStyleSuggestion(content);
+      }
+    });
+  }
+  
+  // Initial update
+  updateNicheInfoCard();
+});
+</script>
