@@ -1042,10 +1042,9 @@ function getMultiVoiceAnchor(voiceConfig) {
   let voiceTagReference = '';
 
   Object.values(slots).forEach((slot, index) => {
-    // Use fullSpec for detailed voice description, compactSpec for per-scene tags
+    // Use fullSpec everywhere for best VEO quality (clips generated independently)
     const fullVoiceSpec = slot.fullSpec || slot.compactSpec;
     const voiceWithAccent = `${fullVoiceSpec}, ${accentSpec}`;
-    const compactWithAccent = `${slot.compactSpec}, ${accentSpec}`;
 
     slotSpecs += `
 ### Voice ${index + 1}: ${slot.label} [${slot.role}]
@@ -1055,10 +1054,10 @@ function getMultiVoiceAnchor(voiceConfig) {
 \`\`\`
 ${voiceWithAccent}
 \`\`\`
-- **Per-Scene Tag:** \`[VOICE_${slot.role}: ${compactWithAccent}]\`
+- **Per-Scene Tag:** \`[VOICE_${slot.role}: ${voiceWithAccent}]\`
 - **Dialogue Format:** \`[${slot.customName || slot.role}]: "dialogue..."\`
 `;
-    voiceTagReference += `[VOICE_${slot.role}: ${compactWithAccent}]\n`;
+    voiceTagReference += `[VOICE_${slot.role}: ${voiceWithAccent}]\n`;
   });
 
   return `
