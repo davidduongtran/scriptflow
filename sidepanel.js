@@ -6346,6 +6346,78 @@ function filterOnScreenText(prompts) {
   };
 }
 
+/**
+ * Reset all VEO prompts and batch states to allow fresh regeneration
+ * Used when user changes Voice/Visual settings and wants to regenerate
+ */
+function resetAndRegenerate() {
+  // Confirm with user
+  if (!confirm('⚠️ This will clear all generated prompts.\n\nAfter changing Voice, Visual, or Character settings, click OK to regenerate with new configuration.')) {
+    return;
+  }
+
+  // Clear batch results
+  if (state.batchResults) {
+    state.batchResults = {};
+  }
+
+  // Clear output textarea
+  const outputTextarea = document.getElementById('veoPromptsOutput');
+  if (outputTextarea) {
+    outputTextarea.value = '';
+  }
+
+  // Clear stats
+  const veoStats = document.getElementById('veoStats');
+  if (veoStats) {
+    veoStats.innerHTML = '';
+  }
+
+  // Reset batch buttons (find container and clear/reset)
+  const batchContainer = document.getElementById('batchButtonsContainer');
+  if (batchContainer) {
+    // Get all batch buttons and reset their state
+    const batchBtns = batchContainer.querySelectorAll('button');
+    batchBtns.forEach(btn => {
+      btn.classList.remove('completed', 'failed', 'running');
+      btn.classList.add('pending');
+      // Reset text to remove checkmark
+      const text = btn.textContent.replace('✅ ', '').replace('❌ ', '').replace('🔄 ', '');
+      btn.textContent = text;
+      btn.disabled = false;
+    });
+  }
+
+  // Reset generate button
+  const generateBtn = document.getElementById('generateAllBatchesBtn');
+  if (generateBtn) {
+    generateBtn.disabled = false;
+    // Recalculate batches based on current scene count
+    const numPrompts = parseInt(document.getElementById('veoNumPrompts')?.value, 10) || 10;
+    const batchSize = 5;
+    const numBatches = Math.ceil(numPrompts / batchSize);
+    generateBtn.innerHTML = `⚡ Generate (${numBatches} batch${numBatches > 1 ? 'es' : ''})`;
+  }
+
+  // Hide progress bar
+  const progressContainer = document.getElementById('veoProgressContainer');
+  if (progressContainer) {
+    progressContainer.style.display = 'none';
+  }
+
+  // Log reset
+  veoLog('🔄 Reset complete. Ready to regenerate with new settings.', 'success');
+  showNotification('✅ Reset complete. Adjust settings and click Generate.', 'success', 'veoStatus');
+}
+
+// Add event listener for Reset & Regenerate button
+document.addEventListener('DOMContentLoaded', function () {
+  const resetBtn = document.getElementById('resetRegenerateBtn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', resetAndRegenerate);
+  }
+});
+
 function combineAndDisplayBatches() {
   // Flatten all batch results into single array
   const allPrompts = [];
