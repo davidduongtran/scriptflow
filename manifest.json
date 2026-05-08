@@ -1,14 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "FinRich Script",
-  "version": "1.6.4",
-  "description": "AI-Powered YouTube Script & VEO 3 Prompt Generation",
+  "name": "TITANSYS MIND",
+  "version": "7.0.0",
+  "description": "AI Script & Prompt Generation - TITANSYS (Modular Architecture)",
   "permissions": [
     "storage",
-    "sidePanel",
-    "activeTab",
-    "alarms",
-    "offscreen"
+    "sidePanel"
   ],
   "host_permissions": [
     "https://api.anthropic.com/*",
@@ -21,7 +18,7 @@
     "default_path": "sidepanel.html"
   },
   "action": {
-    "default_title": "FinRich Script v1.6.4",
+    "default_title": "TITANSYS MIND v7.0",
     "default_icon": "icons/icon48.png"
   },
   "icons": {
@@ -29,9 +26,15 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "externally_connectable": {
-    "ids": [
-      "*"
-    ]
-  }
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "data/*.js",
+        "modules/*.js"
+      ],
+      "matches": [
+        "chrome-extension://*/*"
+      ]
+    }
+  ]
 }

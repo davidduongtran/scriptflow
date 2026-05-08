@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ScriptWriter Pro V12 Stable 1212</title>
-  <link rel="stylesheet" href="sidepanel.css">
+  <title>TITAN MIND</title>
+  <!-- Modern UI v2 (backup: sidepanel-old.css) -->
+  <link rel="stylesheet" href="sidepanel-v2.css">
 </head>
 
 <body>
@@ -16,23 +17,23 @@
         <div class="logo-section">
           <div class="logo">✍️</div>
           <div class="title-section">
-            <h1>ScriptWriter Pro</h1>
-            <p class="subtitle">AI-Powered Script & VEO Prompt Generation</p>
+            <h1>TITAN MIND</h1>
+            <p class="subtitle">AI Script & Prompt Generation</p>
           </div>
         </div>
         <div class="version-info">
-          <span class="version">V12 Stable 1212</span>
+          <span class="version">v7.0.0</span>
         </div>
       </div>
     </header>
 
     <!-- TABS -->
     <div class="tabs">
-      <button class="tab active" data-tab="generate">Generate</button>
-      <button class="tab" data-tab="veo-prompts">VEO Prompts</button>
-      <button class="tab" data-tab="assessment">📊 Assessment</button>
-      <button class="tab" data-tab="post-production">🎬 Post-Production</button>
-      <button class="tab" data-tab="settings">Settings</button>
+      <button class="tab active" data-tab="generate">✍️ Script</button>
+      <button class="tab" data-tab="veo-prompts">🎬 Prompting</button>
+      <button class="tab" data-tab="assessment">📊 Audit</button>
+      <button class="tab" data-tab="post-production">🔍 SEO</button>
+      <button class="tab" data-tab="settings">⚙️ Settings</button>
     </div>
 
     <!-- MAIN CONTENT -->
@@ -46,11 +47,29 @@
 
         <!-- 1. CONTENT INPUT SECTION -->
         <div class="section">
-          <h2>📝 Content Input</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h2 style="margin: 0;">📝 Content Input</h2>
+            <div style="display: flex; gap: 8px;">
+              <input type="file" id="importJsonFile" accept=".json" style="display: none;">
+              <button id="importJsonBtn" class="btn-secondary"
+                style="font-size: 12px; padding: 6px 12px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 6px; cursor: pointer;"
+                title="Import JSON from VPH Analyzer or FR Scan">
+                📥 Import JSON
+              </button>
+            </div>
+          </div>
 
           <div class="form-group">
-            <label for="topic">Video Topic *</label>
-            <input type="text" id="topic" placeholder="e.g., How to Make Money Online">
+            <label for="topic">
+              Video Topic
+              <span class="required-badge">Required</span>
+            </label>
+            <input type="text" id="topic" class="input-large"
+              placeholder="e.g., How to Make Money Online with AI in 2025" maxlength="150" aria-required="true">
+            <div class="field-footer">
+              <span class="form-hint">Be specific - this drives your entire script</span>
+              <span class="char-counter"><span id="topicCharCount">0</span>/150</span>
+            </div>
           </div>
 
           <!-- CLONE MODE SELECTOR (shown when analyzer data loaded) -->
@@ -60,13 +79,13 @@
               <span id="analyzerSourceInfo" class="analyzer-source-info"></span>
             </div>
             <div class="clone-mode-cards">
-              <button class="clone-mode-card" data-mode="100"
+              <button class="clone-mode-card active" data-mode="100"
                 title="Use verbatim transcript - best for exact reproduction">
                 <span class="mode-icon">📋</span>
                 <span class="mode-name">100% Clone</span>
                 <span class="mode-desc">Verbatim transcript</span>
               </button>
-              <button class="clone-mode-card active" data-mode="95" title="Preserve structure with creative wording">
+              <button class="clone-mode-card" data-mode="95" title="Preserve structure with creative wording">
                 <span class="mode-icon">🔄</span>
                 <span class="mode-name">95% Clone</span>
                 <span class="mode-desc">Structure + creative</span>
@@ -102,9 +121,11 @@
           </div>
         </div>
 
-        <!-- 2. AI SUGGESTIONS SECTION -->
-        <div class="section">
-          <h2>🤖 AI Re-Generate Suggestions</h2>
+        <!-- 2. AI SUGGESTIONS SECTION (Collapsible) -->
+        <details class="section collapsible-section">
+          <summary>
+            <h2>🤖 AI Re-Generate Suggestions</h2>
+          </summary>
           <div class="form-group">
             <select id="suggestionModelSelect">
               <optgroup label="Gemini (Recommended)">
@@ -139,11 +160,13 @@
             <strong>💡 AI Suggestions:</strong>
             <div id="suggestionContent"></div>
           </div>
-        </div>
+        </details>
 
-        <!-- 3. SCRIPT PARAMETERS SECTION -->
-        <div class="section">
-          <h2>⚙️ Script Parameters</h2>
+        <!-- 3. SCRIPT PARAMETERS SECTION (Collapsible) -->
+        <details class="section collapsible-section">
+          <summary>
+            <h2>⚙️ Script Parameters</h2>
+          </summary>
 
           <div class="form-group">
             <label for="template">Video Template</label>
@@ -232,7 +255,7 @@
             <input type="text" id="channelName" placeholder="e.g., @YourChannel or Your Channel Name" maxlength="50">
             <small>Used for CTAs and branding in generated scripts</small>
           </div>
-        </div>
+        </details>
 
         <!-- 4. AI MODEL SELECTION -->
         <div class="section">
@@ -294,6 +317,14 @@
         <!-- OUTPUT SECTION -->
         <div class="section" id="outputSection">
           <h2>📄 Generated Script</h2>
+
+          <!-- Empty State (shown when no script generated) -->
+          <div id="scriptEmptyState" class="empty-state">
+            <div class="empty-state-icon">✨</div>
+            <div class="empty-state-title">No script generated yet</div>
+            <div class="empty-state-subtitle">Fill in the fields above and click "Generate Script"</div>
+          </div>
+
           <div id="scriptViewer"></div>
           <div id="scriptStats"></div>
         </div>
@@ -303,6 +334,28 @@
       <div id="veo-prompts" class="tab-content">
         <!-- Status Messages for VEO Tab -->
         <div id="veoStatus" class="api-status"></div>
+
+        <!-- VEO-SAFE NOTIFICATION BANNER (Hidden by default) -->
+        <div id="veoSafeBanner" class="veo-safe-banner hidden">
+          <div class="veo-safe-header">
+            <span class="veo-safe-icon">⚠️</span>
+            <strong>FAMOUS CAST DETECTED</strong>
+          </div>
+          <div id="veoSafeDetails" class="veo-safe-details">
+            <!-- Filled dynamically -->
+          </div>
+          <div class="veo-safe-actions">
+            <button id="applyVeoSafeBtn" class="btn-veo-safe">
+              🛡️ Apply VEO-Safe Mode
+            </button>
+            <button id="dismissVeoSafeBtn" class="btn-dismiss">
+              ✗ Keep Original
+            </button>
+          </div>
+          <small class="veo-safe-hint">VEO-Safe replaces names with visual descriptions to avoid content policy
+            rejections</small>
+        </div>
+
 
         <!-- 1. Topic/Summary Section (FIRST) -->
         <div class="section">
@@ -428,7 +481,7 @@ Or paste your full generated script from the Generate tab."></textarea>
             </label>
             <select id="veoVisualStyle" class="style-select">
 
-              <!-- 🎬 ANIMATION (8 styles) -->
+              <!-- 🎬 ANIMATION (9 styles) -->
               <optgroup label="🎬 Animation">
                 <option value="3D Animation" selected data-finance-rank="1" data-psych-rank="6">
                   3D Animation - Pixar-quality (Finance #1)
@@ -450,6 +503,12 @@ Or paste your full generated script from the Generate tab."></textarea>
                 </option>
                 <option value="Pixel Art" data-finance-rank="11" data-psych-rank="11">
                   Pixel Art - Retro gaming
+                </option>
+                <option value="Ultra-Thin Stick Figure" data-finance-rank="9" data-psych-rank="8">
+                  Ultra-Thin Stick Figure - Minimalist lines
+                </option>
+                <option value="Stylized Stick Figure" data-finance-rank="9" data-psych-rank="9">
+                  Stylized Stick Figure - Expressive cartoon
                 </option>
               </optgroup>
 
@@ -733,10 +792,12 @@ Or paste your full generated script from the Generate tab."></textarea>
           </div>
         </div>
 
-        <!-- 4. Character Consistency Settings (FLOW) -->
-        <div class="section">
-          <h2>🎭 Character Consistency <span style="font-size:0.7em;color:#666;font-weight:normal">(Optional - For
-              FLOW)</span></h2>
+        <!-- 4. Character Consistency Settings (FLOW) (Collapsible) -->
+        <details class="section collapsible-section">
+          <summary>
+            <h2>🎭 Character Consistency <span style="font-size:0.7em;color:#666;font-weight:normal">(Optional - For
+                FLOW)</span></h2>
+          </summary>
 
           <!-- Mode Selection -->
           <div class="form-group" style="margin-bottom:16px;">
@@ -851,7 +912,7 @@ Or paste your full generated script from the Generate tab."></textarea>
               </button>
             </div>
           </div>
-        </div>
+        </details>
 
         <!-- 5. Generate Button - Now uses Smart Batch Generation -->
         <div class="section">
@@ -914,7 +975,7 @@ Or paste your full generated script from the Generate tab."></textarea>
           </div>
           <button id="sendToFlowBtn" class="btn-primary"
             style="width: 100%; margin-top: 8px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
-            🚀 Send to FlowAutomate
+            🚀 Send To Studio
           </button>
           <div id="veoStats" style="margin-top: 8px; font-size: 12px; color: #666;"></div>
         </div>
@@ -972,7 +1033,7 @@ Or paste your full generated script from the Generate tab."></textarea>
         <div class="section">
           <h2>ℹ️ About</h2>
           <div style="font-size: 13px; line-height: 1.8; padding: 0 16px;">
-            <p><strong>ScriptWriter Pro v10.0</strong></p>
+            <p><strong>TITANSYS MIND v7.0.0</strong></p>
             <p>AI-powered YouTube script & VEO prompt generation.</p>
             <p style="margin-top: 12px;"><strong>Features:</strong></p>
             <ul style="margin-left: 16px; margin-top: 8px;">
@@ -983,8 +1044,37 @@ Or paste your full generated script from the Generate tab."></textarea>
               <li>✅ YouTube Analyzer Integration</li>
               <li>✅ Copy & Export Functions</li>
             </ul>
-            <p style="margin-top: 12px;"><strong>Version:</strong> 10.0.0</p>
+            <p style="margin-top: 12px;"><strong>Version:</strong> 7.0.0</p>
           </div>
+        </div>
+
+        <!-- DATA & PRIVACY DISCLOSURE -->
+        <div class="section" id="privacySection">
+          <h2>🔒 Data &amp; Privacy</h2>
+          <div class="privacy-disclosure" style="font-size: 13px; line-height: 1.6; color: var(--text-secondary, #888);">
+            <p><strong>Stored locally on this device only:</strong></p>
+            <ul style="margin: 4px 0 12px 16px; padding: 0;">
+              <li>API keys (Claude, Gemini)</li>
+              <li>Analyzer data from companion extensions</li>
+              <li>Generated scripts and VEO prompt history</li>
+              <li>Your settings and preferences</li>
+            </ul>
+            <p><strong>Sent to Anthropic (script generation):</strong></p>
+            <ul style="margin: 4px 0 12px 16px; padding: 0;">
+              <li>Your script prompts and analyzer content you include</li>
+            </ul>
+            <p><strong>Sent to Google Gemini (VEO prompt generation):</strong></p>
+            <ul style="margin: 4px 0 12px 16px; padding: 0;">
+              <li>Your script content used to generate video prompts</li>
+            </ul>
+            <p><strong>Shared with TITAN companion extensions (on-device only):</strong></p>
+            <ul style="margin: 4px 0 12px 16px; padding: 0;">
+              <li>Analyzer data and scripts passed between TITANSYS SCOPE / TEXT / CORE</li>
+            </ul>
+            <p style="margin-top: 8px; font-style: italic;">No data is sent to TITANSYS servers. All AI calls go directly to Anthropic/Google using your own API keys.</p>
+          </div>
+          <button id="clearAllDataBtn" class="btn" style="background: #dc2626; color: white; margin-top: 12px; width: 100%;">🗑️ Clear All Local Data</button>
+          <div id="clearDataStatus" style="display:none; margin-top: 8px; padding: 8px; border-radius: 6px; background: #1a2f1a; color: #4ade80; font-size: 12px;"></div>
         </div>
       </div>
 
@@ -1080,15 +1170,65 @@ Or paste your full generated script from the Generate tab."></textarea>
 
         <!-- Thumbnail/Banner Prompt -->
         <div class="section">
-          <h2>🖼️ Thumbnail/Banner Prompt</h2>
+          <h2>🖼️ Thumbnail/Banner Generator</h2>
           <p style="font-size: 12px; color: #666; margin-bottom: 12px;">Text-to-image prompt for AI thumbnail generation
-            (Midjourney, DALL-E, etc.)</p>
+          </p>
           <div class="form-group">
             <textarea id="postProdThumbnail" rows="6"
               placeholder="Generated thumbnail prompt with subject, emotion, style, and text overlay will appear here..."
               style="font-family: monospace; font-size: 12px;"></textarea>
           </div>
           <button id="copyThumbnailBtn" class="btn-secondary" style="width: 100%;">📋 Copy Thumbnail Prompt</button>
+
+          <!-- Image Generation with Gemini -->
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <span style="font-weight: 600; font-size: 14px;">🎨 Generate with Gemini</span>
+              <span
+                style="font-size: 11px; padding: 2px 8px; border-radius: 10px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">NEW</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="imageGenModel" style="font-size: 11px;">Image Model</label>
+                <select id="imageGenModel" class="style-select">
+                  <option value="gemini-2.5-flash-image">Nano Banana (Fast)</option>
+                  <option value="gemini-3-pro-image-preview">Nano Banana Pro (4K)</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="imageAspectRatio" style="font-size: 11px;">Aspect Ratio</label>
+                <select id="imageAspectRatio" class="style-select">
+                  <option value="16:9">16:9 (YouTube)</option>
+                  <option value="1:1">1:1 (Square)</option>
+                  <option value="9:16">9:16 (Shorts)</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="generateImageBtn"
+              style="width: 100%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+              🎨 Generate Image
+            </button>
+
+            <!-- Image Preview Container -->
+            <div id="imagePreviewContainer" style="display: none; margin-top: 16px; text-align: center;">
+              <div style="background: #f8fafc; border-radius: 12px; padding: 12px; border: 1px solid #e5e7eb;">
+                <img id="generatedImage"
+                  style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+                  alt="Generated thumbnail" />
+                <div style="display: flex; gap: 8px; margin-top: 12px;">
+                  <button id="downloadImageBtn" class="btn-secondary" style="flex: 1;">💾 Download</button>
+                  <button id="regenerateImageBtn" class="btn-secondary" style="flex: 1;">🔄 Regenerate</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Generation Status -->
+            <div id="imageGenStatus"
+              style="display: none; margin-top: 12px; padding: 10px; border-radius: 8px; font-size: 12px; text-align: center;">
+            </div>
+          </div>
         </div>
 
         <!-- On-Screen Text by Scene -->
@@ -1253,7 +1393,7 @@ Or paste your full generated script from the Generate tab."></textarea>
             <!-- Action Buttons -->
             <div style="display: flex; gap: 12px; margin-top: 20px;">
               <button id="sendToFlowAutomateBtn" class="btn-primary" style="flex: 1; display: none;">
-                📤 Send to FlowAutomate
+                📤 Send To Studio
               </button>
               <button id="reGeneratePromptsBtn" class="btn-secondary" style="flex: 1; display: none;">
                 ♻️ Re-Generate Prompts
@@ -1266,13 +1406,65 @@ Or paste your full generated script from the Generate tab."></textarea>
 
     <!-- FOOTER -->
     <footer>
-      <div class="footer-credits">ScriptWriter Pro v10.0 | Made with ❤️ by David Duong</div>
+      <div class="footer-credits">TITAN MIND v6.0 | TITAN Suite</div>
     </footer>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════════════════════════
+       TITAN MODULAR ARCHITECTURE - Load Order Critical!
+       
+       1. Data Files (no dependencies)
+       2. Core Modules (state, storage, api, messaging)
+       3. Logic Modules (depend on data + core)
+       4. UI Enhancements
+       5. Assessment modules
+       6. Main Orchestrator (sidepanel.js)
+       ═══════════════════════════════════════════════════════════════════════════════ -->
+
+  <!-- 1. DATA FILES (Static data, no dependencies) -->
+  <script src="data/nicheSignals.js"></script>
+  <script src="data/voiceProfiles.js"></script>
+  <script src="data/visualStyles.js"></script>
+  <script src="data/visualDNA.js"></script>
+
+  <!-- TITAN Protocol Modules (for cross-extension communication) -->
+  <script src="shared/extensionProtocol.js"></script>
+  <script src="shared/extensionRegistry.js"></script>
+  <script src="shared/connectionStatusUI.js"></script>
+
+  <!-- 2. CORE MODULES (Foundation) -->
+  <script src="modules/state.js"></script>
+  <script src="modules/storage.js"></script>
+  <script src="modules/apiClient.js"></script>
+  <script src="modules/messaging.js"></script>
+
+  <!-- 3. LOGIC MODULES (Business logic) -->
+  <script src="modules/nicheDetection.js"></script>
+  <script src="modules/voiceManager.js"></script>
+  <script src="modules/scriptGenerator.js"></script>
+  <script src="modules/veoPromptGenerator.js"></script>
+  <script src="modules/uiController.js"></script>
+
+  <!-- 4. UI ENHANCEMENTS -->
+  <script src="ui-enhancements.js"></script>
+
+  <!-- 5. ASSESSMENT MODULES -->
   <script src="assessment_stage1.js"></script>
   <script src="assessment_stage2_3.js"></script>
+
+  <!-- 6. MAIN ORCHESTRATOR (Legacy + Integration) -->
   <script src="sidepanel.js"></script>
+
+  <!-- Initialize connection status after DOM ready -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize connection status UI (shows TITAN CORE availability)
+      if (window.TITAN_CONNECTION_UI) {
+        window.TITAN_CONNECTION_UI.init('.header-section', 'after');
+      }
+    });
+  </script>
+
 </body>
 
 </html>

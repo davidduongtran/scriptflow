@@ -1490,7 +1490,7 @@ console.log(`   ${Object.keys(VIDEO_FORMAT_TEMPLATES).length} video format templ
 
 const VISUAL_STYLE_SPECS = {
   // ═══════════════════════════════════════════════════════════════════════════════
-  // 🎬 ANIMATION STYLES (8)
+  // 🎬 ANIMATION STYLES (9) - Added Stick Figure
   // ═══════════════════════════════════════════════════════════════════════════════
 
   '3D Animation': {
@@ -1603,6 +1603,125 @@ const VISUAL_STYLE_SPECS = {
     financeRank: 11,
     psychologyRank: 11,
     bestFor: 'Gaming audience crossover, nostalgic appeal, unique visual hook'
+  },
+
+  'Ultra-Thin Stick Figure': {
+    name: 'Ultra-Thin Stick Figure',
+    category: 'Animation',
+    // OPTIMIZED: Ultra-thin line specification
+    technicalDNA: 'ultra-thin stick figure animation, delicate pencil-thin line-drawn characters with small circle heads, tiny dot eyes, simple curved line mouths, single-stroke minimal black lines (1-2px line weight maximum), pure white background, no fills, no color on characters, flat 2D style with no depth or perspective, clean minimalist line art aesthetic, expressive body language and gestures, natural fluid movement, hand-drawn animation feel, 24fps',
+    // OPTIMIZED: Ultra-thin emphasis in prefix
+    promptPrefix: 'Stick figure animation. Ultra-thin line-drawn character with single-stroke minimal lines, small circle head, tiny dot eyes, simple curved mouth line, delicate pencil-thin black strokes only (1-2px line weight maximum) on pure white background. Flat 2D style with no depth. Minimalist line art aesthetic with expressive poses and natural fluid movement.',
+    fps: '24fps',
+    // UPDATED: Flat 2D lighting
+    lighting: 'flat white background with no environmental lighting, no shadows cast by characters, uniform brightness, simple 2D flat lighting only',
+    // UPDATED: Flat 2D camera requirements
+    cameraWork: 'static framing, centered composition, locked-off camera, flat 2D framing with no perspective or depth',
+    movementQuality: 'natural fluid movement, smooth transitions, simple 2D motion only',
+    // ENHANCED: Strong negatives against thick lines and complexity
+    negativePrompts: 'no thick lines, no bold strokes, no heavy line weight, no marker lines, no brush strokes, no pen pressure variation, no color fills, no shading, no gradients, no complex details, no realistic textures, no 3D effects, no 3D perspective, no architectural detail, no realistic depth, no complex environments, no backgrounds other than white or simple flat shapes, no additional characters unless specified, no clothing details, no shadows on characters, no textured lines, no variable stroke width',
+    // UPDATED: Background simplicity guidance
+    backgroundStyle: 'pure white background preferred, or minimal flat 2D shapes (simple rectangles, basic outlines) with no perspective, no depth, no architectural detail',
+    colorPalettes: {
+      finance: 'ultra-thin black lines #212121 (1-2px) on white #FFFFFF background, optional green accent #4CAF50 for charts/arrows/money symbols (keep lines thin, maintain 1-2px weight)',
+      psychology: 'ultra-thin black lines #212121 (1-2px) on white #FFFFFF background, optional warm red accent #E91E63 for hearts/emotional indicators (keep lines thin, maintain 1-2px weight)'
+    },
+    // Audio strategy
+    audioStrategy: 'upbeat background music with clear sound effects (whoosh for transitions, pop for emphasis), optional casual voiceover narration. Audio: cheerful indie music, subtle sound effects. No character dialogue unless critical.',
+    financeRank: 9,
+    psychologyRank: 8,
+    bestFor: 'Simple explainers, educational content, relationship dynamics, abstract concepts, quick visuals, universal appeal, viral social content, budget-conscious production, minimalist storytelling',
+    // UPDATED: Production workflow tips for thin lines
+    productionTips: [
+      'Keep action simple - one clear motion per 8-second clip',
+      'Use exaggerated gestures for emotional clarity',
+      'Maintain identical ultra-thin character description across all scenes',
+      'Pre-generate character reference images in consistent ultra-thin style',
+      'Add "ultra-thin stick figure" before every character name in prompts',
+      'Limit characters to 2-3 max per scene for clarity',
+      'Keep backgrounds minimal - use pure white or simple flat 2D shapes only',
+      'Avoid 3D perspective, depth, or architectural detail (forces thicker lines)',
+      'Specify "1-2px line weight maximum" in every prompt',
+      'Use "flat 2D style" language consistently to prevent depth rendering'
+    ],
+    // UPDATED: Example prompt with ultra-thin specifications
+    examplePrompt: 'Stick figure animation. Ultra-thin line-drawn character named Bob with single-stroke minimal lines, small circle head, tiny dot eyes, simple curved smile, delicate pencil-thin black strokes only (1-2px line weight maximum) on pure white background. Flat 2D style with no depth. Bob is sitting at simple rectangular desk outline with basic rectangular computer shape, gesturing with arms raised in excitement. All elements maintain ultra-thin 1-2px line weight. Minimalist line art aesthetic with expressive poses and natural fluid movement. Static camera, centered composition, flat 2D framing. Audio: upbeat indie music, keyboard clicking sounds. No thick lines, no bold strokes, no 3D perspective, no color fills, no shading, no complex details. (no subtitles)',
+    // UPDATED: Common pitfalls specific to thin-line rendering
+    commonMistakes: [
+      'Not specifying "1-2px line weight" causes VEO to default to thicker lines',
+      'Adding 3D perspective or architectural detail forces VEO to thicken lines',
+      'Complex backgrounds create visual density that increases line weight',
+      'Using generic "thin lines" instead of "ultra-thin, delicate, pencil-thin" specific language',
+      'Introducing color/shading breaks the minimal aesthetic',
+      'Forgetting "flat 2D style" allows VEO to add unwanted depth',
+      'Not adding negative prompts against thick lines/bold strokes',
+      'Forgetting "(no subtitles)" when using dialogue',
+      'Inconsistent character descriptions between scenes causes line weight drift'
+    ],
+    // Quick reference keywords for ultra-thin rendering
+    thinLineKeywords: [
+      'ultra-thin',
+      'delicate pencil-thin',
+      'single-stroke minimal lines',
+      '1-2px line weight maximum',
+      'flat 2D style',
+      'no depth',
+      'no perspective',
+      'simple 2D flat'
+    ],
+    // Debugging checklist when figures come out too thick
+    debuggingChecklist: [
+      'Did you specify "1-2px line weight maximum"?',
+      'Did you use "ultra-thin" or "delicate pencil-thin" language?',
+      'Did you add "flat 2D style with no depth" to camera/style?',
+      'Did you include negative prompts for "no thick lines, no bold strokes"?',
+      'Is your background pure white or minimal flat shapes (not complex/3D)?',
+      'Did you avoid 3D perspective, architecture, or realistic depth?',
+      'Did you copy the exact ultra-thin character description to every scene?'
+    ]
+  },
+
+  'Stylized Stick Figure': {
+    name: 'Stylized Stick Figure',
+    category: 'Animation',
+    technicalDNA: 'stylized stick figure animation, clean cartoon-style characters with medium-weight black outlines (4-6px stroke width), large circle heads with white fill, expressive small black dot eyes, simple curved line mouths showing emotions (smiles, open laughs), styled hair shapes (bob, tuft, ponytail), simple stick limbs with clean lines and gestural poses, gray fills allowed for clothing (dress, shirt), gradient colored backgrounds (purple, teal, blue, orange), stylized flat city silhouettes with simple geometric building shapes, flat colored ground surfaces, atmospheric depth with foreground/background layers, hand-drawn animation feel with smooth fluid movement, 24fps',
+    promptPrefix: 'Stylized stick figure animation. Clean cartoon-style characters with medium-weight black outlines (4-6px), large circle heads with white fill, expressive dot eyes, simple curved mouth. Hand-drawn animation feel.',
+    fps: '24fps',
+    lighting: 'soft ambient lighting, subtle character rim light, atmospheric depth layers, flat cel-shaded style',
+    cameraWork: 'static centered framing, medium shot composition, can include stylized backgrounds',
+    movementQuality: 'smooth fluid cartoon animation, expressive body language and gestures, natural conversation feel',
+    negativePrompts: 'no realistic textures, no complex shading, no 3D rendering, no photorealistic elements, no detailed facial features, no complex clothing patterns, no realistic proportions, no heavy crosshatching, no sketch lines, no ultra-thin lines (must be medium weight 4-6px)',
+    backgroundStyle: 'gradient colored skies (purple #9C27B0 to teal #00BCD4, orange to pink, blue gradients), stylized flat city silhouettes with simple geometric skyscraper shapes, flat colored ground surfaces (magenta #E91E63, purple, teal), atmospheric layers for depth, simple geometric shapes allowed',
+    colorPalettes: {
+      finance: 'professional vibrant - gradient teal #00BCD4 to green #4CAF50 sky, navy city silhouettes, gray fills for business attire, magenta #E91E63 accents',
+      psychology: 'warm emotional - gradient purple #9C27B0 to pink #E91E63 sky, soft blue city silhouettes, gray fills for casual clothing, warm coral accents'
+    },
+    audioStrategy: 'clear dialogue-focused mix, subtle background music at -12dB, scene-specific sound effects precisely synchronized, minimalist musical underscore supporting mood without competing',
+    financeRank: 9,
+    psychologyRank: 9,
+    bestFor: 'Interview/dialogue scenes, social media shorts (TikTok, Reels, YouTube Shorts), expressive storytelling, character-driven explainers, scene-based narratives, emotional content with personality, multi-character interactions',
+    productionTips: [
+      'Perfect for interview and dialogue-heavy content',
+      'Keep character designs simple - circle heads, dot eyes, curved mouth lines',
+      'Use medium-weight outlines consistently (4-6px) - not ultra-thin',
+      'Gray fills only for clothing - keep faces and limbs as outlines',
+      'Gradient backgrounds add visual interest without complexity',
+      'City silhouettes should be flat geometric shapes only',
+      'Limit to 3-4 colors per scene maximum',
+      'Expressive through gestures and simple facial changes',
+      'Hand-drawn feel with smooth movement, not choppy'
+    ],
+    examplePrompt: 'Stylized stick figure animation. Clean cartoon-style characters with medium-weight black outlines (4-6px), large circle heads with white fill. FEMALE CHARACTER (left): Gray bob hairstyle, expressive dot eyes, small curved smile, gray dress with simple fill, holding gray microphone. MALE CHARACTER (right): Small black hair tuft on top, expressive dot eyes, open laughing mouth, simple line body, animated hand gestures. Background: Gradient purple (#9C27B0) to teal (#00BCD4) sky, stylized flat city silhouette with simple geometric skyscraper shapes, magenta (#E91E63) ground surface. Interview scene - female holds microphone toward male who is laughing and gesturing enthusiastically. Expressive body language, natural conversation feel. Hand-drawn animation feel with smooth fluid movement. Static camera, centered medium shot, characters at 3/4 view. Audio: upbeat background music, clear dialogue. No realistic textures, no complex shading. (no subtitles)',
+    commonMistakes: [
+      'Making outlines too thin (must be 4-6px, not 1-2px ultra-thin style)',
+      'Adding too many colors - stick to 3-4 color maximum per scene',
+      'Making facial features too complex - keep to dots and curves',
+      'Realistic proportions - maintain stick figure simplicity',
+      'Detailed backgrounds - use flat geometric silhouettes only',
+      'Inconsistent line weight - specify 4-6px throughout',
+      'Complex clothing patterns - simple gray fills only',
+      'Forgetting hand-drawn animation feel in prompt'
+    ]
   },
 
   // ═══════════════════════════════════════════════════════════════════════════════
@@ -3126,29 +3245,14 @@ async function testClaudeConnection() {
   showNotification('🧪 Testing Claude connection...', 'loading', 'settingsStatus');
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 10,
-        messages: [{ role: 'user', content: 'Say "OK"' }]
-      })
-    });
-
-    if (response.ok) {
-      showNotification('✅ Claude API connected!', 'success', 'settingsStatus');
-    } else {
-      const err = await response.json();
-      showNotification(`❌ Claude Error: ${err.error?.message || response.status}`, 'error', 'settingsStatus');
-    }
+    // Temporarily set key in state so TITAN.api.claude can use it for this connection test
+    const prevKey = TITAN.state?.get('settings.claudeApiKey');
+    TITAN.state?.set('settings.claudeApiKey', apiKey);
+    await TITAN.api.claude({ prompt: 'Say "OK"', model: 'claude-sonnet-4-20250514', maxTokens: 10 });
+    TITAN.state?.set('settings.claudeApiKey', prevKey);
+    showNotification('✅ Claude API connected!', 'success', 'settingsStatus');
   } catch (error) {
-    showNotification(`❌ Connection failed: ${error.message}`, 'error', 'settingsStatus');
+    showNotification(`❌ Claude Error: ${error.message}`, 'error', 'settingsStatus');
   }
 }
 
@@ -3406,13 +3510,132 @@ function parseTranscriptWithTitles(rawAnalysis) {
   return entries;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// CHANNEL NAME SANITIZATION
+// Replaces original channel name from source video with user's channel or placeholder
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Sanitize channel names from source video content
+ * @param {string} text - Text to sanitize
+ * @param {string} originalChannel - Original channel name to remove
+ * @param {string} userChannel - User's channel name (from input field)
+ * @returns {string} Sanitized text
+ */
+function sanitizeChannelName(text, originalChannel, userChannel) {
+  if (!text || !originalChannel) return text;
+
+  // Normalize for matching
+  const normalizedOriginal = originalChannel.trim().toLowerCase();
+  if (normalizedOriginal.length < 3) return text; // Too short to reliably match
+
+  // Get replacement - user's channel or placeholder
+  const replacement = userChannel?.trim() || 'our channel';
+
+  let sanitized = text;
+
+  // Create escape function for regex
+  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedOriginal = escapeRegex(originalChannel.trim());
+
+  // 1. Replace common CTA patterns with channel name
+  const ctaPatterns = [
+    // Welcome patterns
+    { pattern: new RegExp(`welcome to\\s+${escapedOriginal}`, 'gi'), replace: `welcome to ${replacement}` },
+    { pattern: new RegExp(`welcome back to\\s+${escapedOriginal}`, 'gi'), replace: `welcome back to ${replacement}` },
+
+    // Subscribe patterns
+    { pattern: new RegExp(`subscribe to\\s+${escapedOriginal}`, 'gi'), replace: `subscribe to ${replacement}` },
+    { pattern: new RegExp(`subscribed to\\s+${escapedOriginal}`, 'gi'), replace: `subscribed to ${replacement}` },
+
+    // Follow patterns
+    { pattern: new RegExp(`follow\\s+${escapedOriginal}`, 'gi'), replace: `follow ${replacement}` },
+    { pattern: new RegExp(`following\\s+${escapedOriginal}`, 'gi'), replace: `following ${replacement}` },
+
+    // Thanks patterns
+    { pattern: new RegExp(`thanks for watching\\s+${escapedOriginal}`, 'gi'), replace: `thanks for watching` },
+    { pattern: new RegExp(`thank you for watching\\s+${escapedOriginal}`, 'gi'), replace: `thank you for watching` },
+
+    // Hit patterns
+    { pattern: new RegExp(`hit the (bell|subscribe|notification).*?${escapedOriginal}`, 'gi'), replace: `hit the $1` },
+
+    // Here at patterns
+    { pattern: new RegExp(`here at\\s+${escapedOriginal}`, 'gi'), replace: `here at ${replacement}` },
+    { pattern: new RegExp(`here on\\s+${escapedOriginal}`, 'gi'), replace: `here on ${replacement}` },
+
+    // Channel possessive
+    { pattern: new RegExp(`${escapedOriginal}'s channel`, 'gi'), replace: `${replacement}` },
+    { pattern: new RegExp(`${escapedOriginal} channel`, 'gi'), replace: `${replacement}` },
+  ];
+
+  // Apply CTA patterns
+  for (const { pattern, replace } of ctaPatterns) {
+    sanitized = sanitized.replace(pattern, replace);
+  }
+
+  // 2. Replace standalone channel name mentions (case insensitive, word boundary)
+  const standalonePattern = new RegExp(`\\b${escapedOriginal}\\b`, 'gi');
+  sanitized = sanitized.replace(standalonePattern, replacement);
+
+  // 3. Clean up any double spaces or artifacts
+  sanitized = sanitized.replace(/\s{2,}/g, ' ');
+
+  return sanitized;
+}
+
+/**
+ * Apply channel sanitization to all analyzer data sections
+ * @param {Object} data - Analyzer data object
+ * @param {string} originalChannel - Original channel name
+ * @param {string} userChannel - User's channel name
+ * @returns {Object} Sanitized data
+ */
+function sanitizeAnalyzerData(data, originalChannel, userChannel) {
+  if (!data || !originalChannel) return data;
+
+  const sanitized = { ...data };
+
+  // Sanitize rawAnalysis (main content)
+  if (sanitized.rawAnalysis) {
+    sanitized.rawAnalysis = sanitizeChannelName(sanitized.rawAnalysis, originalChannel, userChannel);
+  }
+
+  // Sanitize transcript if present
+  if (sanitized.transcript) {
+    if (typeof sanitized.transcript === 'string') {
+      sanitized.transcript = sanitizeChannelName(sanitized.transcript, originalChannel, userChannel);
+    } else if (Array.isArray(sanitized.transcript)) {
+      sanitized.transcript = sanitized.transcript.map(item => {
+        if (typeof item === 'string') return sanitizeChannelName(item, originalChannel, userChannel);
+        if (item.text) item.text = sanitizeChannelName(item.text, originalChannel, userChannel);
+        return item;
+      });
+    }
+  }
+
+  // Sanitize hook text
+  if (sanitized.hook) {
+    sanitized.hook = sanitizeChannelName(sanitized.hook, originalChannel, userChannel);
+  }
+
+  // Sanitize CTAs
+  if (sanitized.ctas) {
+    if (typeof sanitized.ctas === 'string') {
+      sanitized.ctas = sanitizeChannelName(sanitized.ctas, originalChannel, userChannel);
+    }
+  }
+
+  console.log(`🧹 Channel name sanitized: "${originalChannel}" → "${userChannel || 'our channel'}"`);
+  return sanitized;
+}
+
+
 async function loadAnalyzerData() {
   try {
     const stored = await chrome.storage.local.get(['analyzerData']);
     if (!stored.analyzerData) return;
 
-    const data = stored.analyzerData;
-    state.analyzerData = data;
+    let data = stored.analyzerData;
 
     console.log('📊 Loading analyzer data:', data);
 
@@ -3422,6 +3645,26 @@ async function loadAnalyzerData() {
     const views = data.metadata?.views || data.views || '';
     const duration = data.metadata?.duration || data.duration || '';
     const url = data.metadata?.url || data.url || '';
+
+    // ═══════════════════════════════════════════════════════════════════
+    // CHANNEL NAME SANITIZATION - Remove original channel from content
+    // ═══════════════════════════════════════════════════════════════════
+    if (channel) {
+      // Store original channel for reference
+      state.originalChannel = channel;
+
+      // Get user's channel name from input field
+      const userChannelInput = document.getElementById('channelName');
+      const userChannel = userChannelInput?.value?.trim() || '';
+
+      // Sanitize the data to remove original channel mentions
+      data = sanitizeAnalyzerData(data, channel, userChannel);
+
+      console.log(`🧹 Original channel "${channel}" sanitized from analyzer data`);
+    }
+
+    // Store sanitized data
+    state.analyzerData = data;
 
     // Set Video Topic from title
     if (videoTitle) {
@@ -3457,7 +3700,7 @@ async function loadAnalyzerData() {
         // Set source info
         const sourceInfo = document.getElementById('analyzerSourceInfo');
         if (sourceInfo) {
-          sourceInfo.textContent = `📺 ${channel || videoTitle || 'Analyzed Video'}`;
+          sourceInfo.textContent = `📺 Analyzed Video${duration ? ` | ${duration}` : ''}`;
         }
 
         // Populate blueprint summary
@@ -3522,12 +3765,11 @@ async function loadAnalyzerData() {
       const hookSection = extractSection(data.rawAnalysis, '### 9. OPENING HOOK');
       if (hookSection) {
         console.log('✅ Found Section 9, length:', hookSection.length);
-        // Use simple extraction - just get first 500 chars after header
+        // Extract FULL hook analysis without truncation (contains Type, Quote, Psychological Analysis, etc.)
         hookText = hookSection
           .replace(/### 9\. OPENING HOOK[^\n]*/i, '')
-          .trim()
-          .substring(0, 500);
-        console.log('✅ Extracted hook:', hookText.substring(0, 100) + '...');
+          .trim();
+        console.log('✅ Extracted full hook analysis, length:', hookText.length);
       }
     }
 
@@ -3555,9 +3797,10 @@ async function loadAnalyzerData() {
     // Handle additional context - Extract from rawAnalysis sections (new 14-section format)
     let contextParts = [];
 
-    // Add video metadata as context
-    if (channel || views || duration) {
-      contextParts.push(`📺 Source Video: ${channel}${views ? ` | ${views} views` : ''}${duration ? ` | ${duration}` : ''}`);
+    // NOTE: Removed Source Video channel name to prevent competitor names in generated scripts
+    // Only keep duration for reference
+    if (duration) {
+      contextParts.push(`📺 Reference Video Duration: ${duration}`);
     }
 
     // Extract from rawAnalysis sections if available
@@ -3842,32 +4085,9 @@ Return ONLY the JSON object, no explanation or markdown.`;
         throw new Error('Claude API key required. Configure in Settings.');
       }
 
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': state.settings.claudeApiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: suggestionModel,
-          max_tokens: 1000,
-          messages: [{ role: 'user', content: prompt }]
-        })
-      });
-
-      console.log('📥 Response status:', response.status);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('❌ API Error:', errorData);
-        throw new Error(errorData.error?.message || `Claude API error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('📄 Raw response:', data);
-      rawText = data.content[0].text;
+      console.log('📥 Calling TITAN.api.claude for suggestions...');
+      rawText = await TITAN.api.claude({ prompt, model: suggestionModel, maxTokens: 1000 });
+      console.log('📄 Raw response received');
     }
 
     console.log('📝 Raw text:', rawText);
@@ -4464,30 +4684,8 @@ Write in natural, spoken language.`;
         throw new Error('Claude API key required. Configure in Settings.');
       }
 
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': state.settings.claudeApiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: aiModel,
-          max_tokens: 8000,  // Increased to match Gemini's limit
-          messages: [{ role: 'user', content: prompt }]
-        })
-      });
-
+      scriptText = await TITAN.api.claude({ prompt, model: aiModel, maxTokens: 8000 });
       updateProgressBar('progressBar', 'progressPercent', 70);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'API error');
-      }
-
-      const data = await response.json();
-      scriptText = data.content[0].text;
     }
 
     updateProgressBar('progressBar', 'progressPercent', 90);
@@ -5725,28 +5923,11 @@ async function callVeoApi(apiKey, promptText) {
       throw new Error('Claude API key required for Claude models. Configure in Settings.');
     }
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': state.settings.claudeApiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: model,
-        max_tokens: 8192,
-        messages: [{ role: 'user', content: promptText + '\n\nRespond with ONLY valid JSON.' }]
-      })
+    return TITAN.api.claude({
+      prompt: promptText + '\n\nRespond with ONLY valid JSON.',
+      model,
+      maxTokens: 8192
     });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Claude API Error: ${errorData.error?.message || response.status}`);
-    }
-
-    const data = await response.json();
-    return data.content[0].text;
   }
 
   // Gemini API call (existing logic)
@@ -7094,27 +7275,11 @@ OUTPUT format (JSON ONLY):
       }
 
       console.log('📡 Calling Claude API for assessment...');
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': state.settings.claudeApiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: selectedModel,
-          max_tokens: 1000,
-          messages: [{ role: 'user', content: assessmentPrompt + '\n\nRespond with ONLY valid JSON.' }]
-        })
+      responseText = await TITAN.api.claude({
+        prompt: assessmentPrompt + '\n\nRespond with ONLY valid JSON.',
+        model: selectedModel,
+        maxTokens: 1000
       });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(`Claude API error: ${response.status} - ${errorData.error?.message || 'Unknown'}`);
-      }
-      const data = await response.json();
-      responseText = data.content[0].text;
       console.log('✅ Claude API response received');
     } else {
       // Gemini API call
@@ -7463,7 +7628,7 @@ function displayAssessmentResults(assessment) {
 // ──────────────────────────────────────────────────────────────────────────────
 
 async function sendToFlowAutomate() {
-  console.log('📤 Sending prompts to FlowAutomate...');
+  console.log('📤 Sending prompts to Studio...');
 
   // Get prompts from textarea (works from VEO tab or Assessment tab)
   const promptsText = document.getElementById('veoPromptsOutput')?.value || state.veoPromptsText || '';
@@ -7478,32 +7643,28 @@ async function sendToFlowAutomate() {
     (promptsText.match(/\n\n/g) || []).length + 1;
 
   try {
-    // Get or discover FinRich Studio extension ID
-    const result = await chrome.storage.local.get(['autoFlowExtensionId']);
-    let autoFlowId = result.autoFlowExtensionId;
-
-    // Known FinRich Studio extension IDs (add production and dev IDs)
+    // Known FinRich Studio / FR Studio-S extension IDs
     const KNOWN_STUDIO_IDS = [
-      'ppmhfeekikdhkaacmcglhijaglcecodg', // Production ID from console log
-      // Add more known IDs here if needed
+      'egfmijeglahmgddfbogmkbpafhefimda', // FR Studio-S v2.0.0 (Smart Pipeline)
+      'ppmhfeekikdhkaacmcglhijaglcecodg', // FinRich Studio (Production)
     ];
 
-    // If no stored ID, try to discover from known IDs
-    if (!autoFlowId) {
-      console.log('🔍 Auto-discovering FinRich Studio extension...');
-      for (const knownId of KNOWN_STUDIO_IDS) {
-        try {
-          const pingResponse = await chrome.runtime.sendMessage(knownId, { type: 'ping' });
-          if (pingResponse?.pong || pingResponse?.received) {
-            autoFlowId = knownId;
-            // Save discovered ID for future use
-            await chrome.storage.local.set({ autoFlowExtensionId: knownId });
-            console.log(`✅ Discovered FinRich Studio: ${knownId}`);
-            break;
-          }
-        } catch (e) {
-          // This ID didn't respond, try next
+    // Always try to discover which Studio extension is available
+    // (Don't rely on cached ID as user may switch between extensions)
+    let autoFlowId = null;
+    console.log('🔍 Discovering available Studio extension...');
+
+    for (const knownId of KNOWN_STUDIO_IDS) {
+      try {
+        const pingResponse = await chrome.runtime.sendMessage(knownId, { type: 'ping' });
+        if (pingResponse?.pong || pingResponse?.received) {
+          autoFlowId = knownId;
+          const extName = pingResponse?.extension || 'Studio';
+          console.log(`✅ Found ${extName}: ${knownId}`);
+          break;
         }
+      } catch (e) {
+        console.log(`ℹ️ ${knownId.slice(0, 8)}... not available`);
       }
     }
 
@@ -7526,7 +7687,7 @@ async function sendToFlowAutomate() {
       }
     });
 
-    console.log(`✅ Saved ${promptCount} prompts to storage for FlowAutomate`);
+    console.log(`✅ Saved ${promptCount} prompts to storage for Studio`);
 
     // *** NEW: Send cross-extension message for real-time delivery ***
     if (autoFlowId) {
@@ -7566,8 +7727,8 @@ async function sendToFlowAutomate() {
       });
     }
 
-    showNotification(`✅ Sent ${promptCount} prompts to FlowAutomate! Open FlowAutomate to receive.`, 'success', 'veoStatus');
-    veoLog(`Sent ${promptCount} prompts to FlowAutomate (also copied to clipboard)`, 'success');
+    showNotification(`✅ Sent ${promptCount} prompts to Studio! Open Studio to receive.`, 'success', 'veoStatus');
+    veoLog(`Sent ${promptCount} prompts to Studio (also copied to clipboard)`, 'success');
 
   } catch (error) {
     console.error('Error sending to FlowAutomate:', error);
@@ -8353,6 +8514,121 @@ document.addEventListener('DOMContentLoaded', async () => {
     veoLog(`Model: ${e.target.value}`, 'info');
   });
 
+  // ═══════════════════════════════════════════════════════════════════════════════
+  // VEO-SAFE: Famous Cast Detection & Transformation
+  // ═══════════════════════════════════════════════════════════════════════════════
+
+  // Store detected matches for transformation
+  let veoSafeDetectedMatches = [];
+
+  // Check for famous cast when topic changes
+  document.getElementById('veoTopic')?.addEventListener('input', debounce(() => {
+    checkForFamousCast();
+  }, 1000));
+
+  // Apply VEO-Safe transformation
+  document.getElementById('applyVeoSafeBtn')?.addEventListener('click', () => {
+    if (window.VEO_SAFE && veoSafeDetectedMatches.length > 0) {
+      const topicInput = document.getElementById('veoTopic');
+      const originalText = topicInput.value;
+      const transformedText = window.VEO_SAFE.applyVEOSafeTransform(originalText, veoSafeDetectedMatches);
+
+      topicInput.value = transformedText;
+
+      // Hide banner and show success indicator
+      document.getElementById('veoSafeBanner').classList.add('hidden');
+      veoLog(`✅ VEO-Safe applied: ${veoSafeDetectedMatches.length} name(s) transformed`, 'success');
+      showVeoSafeAppliedIndicator();
+
+      // Clear matches
+      veoSafeDetectedMatches = [];
+    }
+  });
+
+  // Dismiss and keep original
+  document.getElementById('dismissVeoSafeBtn')?.addEventListener('click', () => {
+    document.getElementById('veoSafeBanner').classList.add('hidden');
+    veoSafeDetectedMatches = [];
+    veoLog('VEO-Safe dismissed - keeping original names', 'info');
+  });
+
+  /**
+   * Check the veoTopic input for famous people/brands
+   */
+  function checkForFamousCast() {
+    if (!window.VEO_SAFE) return;
+
+    const topicText = document.getElementById('veoTopic')?.value || '';
+    if (topicText.length < 10) {
+      document.getElementById('veoSafeBanner')?.classList.add('hidden');
+      return;
+    }
+
+    const result = window.VEO_SAFE.detectFamousCast(topicText);
+
+    if (result.detected && result.matches.length > 0) {
+      veoSafeDetectedMatches = result.matches;
+
+      // Show banner
+      const banner = document.getElementById('veoSafeBanner');
+      const details = document.getElementById('veoSafeDetails');
+
+      if (banner && details) {
+        const summary = window.VEO_SAFE.getFamousCastSummary(result.matches);
+        details.innerHTML = `
+          <strong>Found ${result.count} potential VEO policy item(s):</strong><br>
+          ${summary}
+        `;
+        banner.classList.remove('hidden');
+
+        veoLog(`⚠️ Famous cast detected: ${result.count} item(s)`, 'warn');
+      }
+    } else {
+      document.getElementById('veoSafeBanner')?.classList.add('hidden');
+      veoSafeDetectedMatches = [];
+    }
+  }
+
+  /**
+   * Show "VEO-Safe Applied" indicator
+   */
+  function showVeoSafeAppliedIndicator() {
+    // Check if indicator already exists
+    let indicator = document.getElementById('veoSafeAppliedIndicator');
+    if (!indicator) {
+      indicator = document.createElement('div');
+      indicator.id = 'veoSafeAppliedIndicator';
+      indicator.className = 'veo-safe-applied';
+      indicator.innerHTML = '🛡️ <span>VEO-Safe Mode Applied - Names replaced with visual descriptions</span>';
+
+      const banner = document.getElementById('veoSafeBanner');
+      if (banner) {
+        banner.parentNode.insertBefore(indicator, banner);
+      }
+    }
+    indicator.classList.remove('hidden');
+
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      indicator.classList.add('hidden');
+    }, 5000);
+  }
+
+  /**
+   * Simple debounce function
+   */
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
   // Post-Production Tab
   document.getElementById('generatePostProdBtn')?.addEventListener('click', generatePostProdContent);
   document.getElementById('copyTitleBtn')?.addEventListener('click', copyPostProdTitle);
@@ -8414,6 +8690,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('testGeminiBtn')?.addEventListener('click', testGeminiConnection);
   document.getElementById('saveSettingsBtn')?.addEventListener('click', saveSettings);
 
+  // Privacy: clear all local storage
+  document.getElementById('clearAllDataBtn')?.addEventListener('click', () => {
+    if (!confirm('Clear all stored data? This removes API keys, history, and cached analyzer data. You will need to re-enter your API keys.')) return;
+    chrome.storage.local.clear(() => {
+      const status = document.getElementById('clearDataStatus');
+      if (status) {
+        status.textContent = '✅ All local data cleared. Please reload the extension to re-enter your API keys.';
+        status.style.display = 'block';
+      }
+    });
+  });
+
   // Listen for analyzer data
   chrome.runtime.onMessage.addListener(async (request) => {
     console.log('📨 Message received:', request);
@@ -8422,7 +8710,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log('🎯 Analyzer data received event triggered!');
 
       await loadAnalyzerData();
-      showNotification('📊 Analyzer data received!', 'success');
+
+      // Show notification with source info
+      const source = request.source || 'Analyzer';
+      const isTextSource = source.includes('FR Text');
+      const emoji = isTextSource ? '📝' : '📊';
+      showNotification(`${emoji} Data received from ${source}!`, 'success');
 
       console.log('Checking conditions for auto-suggestions:');
       console.log('- analyzerData present:', !!state.analyzerData);
@@ -8588,35 +8881,14 @@ async function callGeminiAPI(prompt, model, apiKey) {
 }
 
 /**
- * Call Claude API for Post Production content generation
+ * Call Claude API — delegates to TITAN.api.claude() which reads the key from TITAN.state.
  * @param {string} prompt - The prompt to send
  * @param {string} model - Claude model name
- * @param {string} apiKey - API key
- * @returns {string} Generated text response
+ * @param {string} _apiKey - Unused; key is read internally by TITAN.api.claude
+ * @returns {Promise<string>} Generated text response
  */
-async function callClaudeAPI(prompt, model, apiKey) {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    },
-    body: JSON.stringify({
-      model: model,
-      max_tokens: 16384,
-      messages: [{ role: 'user', content: prompt }]
-    })
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error?.message || `Claude API error: ${response.status}`);
-  }
-
-  const data = await response.json();
-  return data.content[0].text;
+async function callClaudeAPI(prompt, model, _apiKey) {
+  return TITAN.api.claude({ prompt, model, maxTokens: 16384 });
 }
 
 async function generatePostProduction() {
@@ -8638,7 +8910,38 @@ async function generatePostProduction() {
   // Get analyzer data for personas
   const analyzerData = state.analyzerData || {};
   const personas = analyzerData.personas || analyzerData.audience_persona || [];
-  const primaryPersona = personas[0] || {};
+
+  // NEW: Get audience from the Generate tab input field (user-entered value)
+  const audienceInputValue = document.getElementById('audience')?.value?.trim() || '';
+
+  // Build primaryPersona with multiple fallback sources:
+  // 1. User-entered audience from Generate tab (highest priority)
+  // 2. Analyzer personas data
+  // 3. Default empty object (will use generic fallbacks in prompt)
+  let primaryPersona;
+  if (audienceInputValue) {
+    // User has entered explicit audience - use it directly
+    primaryPersona = {
+      name: audienceInputValue,
+      description: audienceInputValue,
+      pain_points: [] // Will use generic pain points
+    };
+  } else if (personas.length > 0 && personas[0]) {
+    primaryPersona = personas[0];
+  } else {
+    // Fallback: try to extract from analyzer rawAnalysis if available
+    const rawAnalysis = analyzerData.rawAnalysis || '';
+    const audienceMatch = rawAnalysis.match(/POTENTIAL AUDIENCE[:\s]*([\s\S]*?)(?:###|$)/i);
+    if (audienceMatch && audienceMatch[1]?.trim()) {
+      primaryPersona = {
+        name: 'Target Viewers',
+        description: audienceMatch[1].trim().substring(0, 200),
+        pain_points: []
+      };
+    } else {
+      primaryPersona = {};
+    }
+  }
 
   // Get selected model
   const model = document.getElementById('postProdModelSelect')?.value || 'gemini-2.5-pro';
@@ -8722,8 +9025,10 @@ async function generatePostProduction() {
 }
 
 function buildPostProductionPrompt({ topic, script, veoPrompts, primaryPersona, sceneCount, includeTimestamps, includeCTAs, includeHashtags }) {
-  const personaInfo = primaryPersona.description || primaryPersona.name || 'content creators';
-  const painPoints = primaryPersona.pain_points?.join(', ') || 'common challenges';
+  // Fallback: derive audience from topic if no persona provided
+  const topicBasedAudience = topic ? `viewers interested in ${topic}` : 'general audience';
+  const personaInfo = primaryPersona.description || primaryPersona.name || topicBasedAudience;
+  const painPoints = primaryPersona.pain_points?.join(', ') || 'common challenges in this area';
 
   return `You are a YouTube SEO expert and post-production specialist. Generate comprehensive post-production content for a video.
 
@@ -9092,4 +9397,401 @@ function downloadSmartFile(content, filename, mimeType) {
   }
 })();
 
-console.log('📋 ScriptWriter Pro v12 + Visual Rendering v2.0 + Voice Anchor v2.0 ready');
+// ═══════════════════════════════════════════════════════════════════════════════
+// IMAGE GENERATION SYSTEM v1.0
+// Generate thumbnails/banners using Gemini Image API (Nano Banana models)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Generate image from thumbnail prompt using Gemini Image API
+ */
+async function generateBannerImage() {
+  const prompt = document.getElementById('postProdThumbnail')?.value?.trim();
+  const model = document.getElementById('imageGenModel')?.value || 'gemini-2.5-flash-image';
+  const aspectRatio = document.getElementById('imageAspectRatio')?.value || '16:9';
+
+  const btn = document.getElementById('generateImageBtn');
+  const statusDiv = document.getElementById('imageGenStatus');
+
+  // Validation
+  if (!prompt) {
+    showImageGenStatus('Please enter a thumbnail prompt first', 'error');
+    return;
+  }
+
+  if (!state.settings.geminiApiKey) {
+    showImageGenStatus('Gemini API key required for image generation. Please set it in Settings.', 'error');
+    return;
+  }
+
+  // UI: Loading state
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Generating...';
+  }
+  showImageGenStatus('Generating image with Gemini...', 'loading');
+
+  try {
+    console.log('🎨 Generating image with:', { model, aspectRatio, promptLength: prompt.length });
+
+    // Add aspect ratio instruction to the prompt
+    const aspectInstruction = aspectRatio === '16:9' ? 'wide landscape format 16:9 aspect ratio' :
+      aspectRatio === '9:16' ? 'tall portrait format 9:16 aspect ratio' :
+        'square 1:1 aspect ratio';
+    const enhancedPrompt = `${prompt}. Generate in ${aspectInstruction}.`;
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${state.settings.geminiApiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: enhancedPrompt }] }],
+          generationConfig: {
+            responseModalities: ['IMAGE']
+          }
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    // Check for errors
+    if (data.error) {
+      throw new Error(data.error.message || 'API error occurred');
+    }
+
+    // Extract image from response
+    if (data.candidates?.[0]?.content?.parts) {
+      for (const part of data.candidates[0].content.parts) {
+        if (part.inlineData) {
+          displayGeneratedImage(part.inlineData.data, part.inlineData.mimeType || 'image/png');
+          showImageGenStatus('Image generated successfully! ✓', 'success');
+          console.log('✅ Image generated successfully');
+          return;
+        }
+      }
+    }
+
+    throw new Error('No image returned from API. Try a different prompt.');
+
+  } catch (error) {
+    console.error('❌ Image generation error:', error);
+    showImageGenStatus(`Failed: ${error.message}`, 'error');
+  } finally {
+    // Reset button state
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '🎨 Generate Image';
+    }
+  }
+}
+
+/**
+ * Display generated image in preview container
+ */
+function displayGeneratedImage(base64Data, mimeType) {
+  const container = document.getElementById('imagePreviewContainer');
+  const img = document.getElementById('generatedImage');
+
+  if (!container || !img) {
+    console.error('Image preview elements not found');
+    return;
+  }
+
+  // Set image source
+  img.src = `data:${mimeType};base64,${base64Data}`;
+
+  // Store data for download
+  img.dataset.base64 = base64Data;
+  img.dataset.mimeType = mimeType;
+
+  // Show container
+  container.style.display = 'block';
+
+  // Scroll to preview
+  container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/**
+ * Download generated image
+ */
+function downloadGeneratedImage() {
+  const img = document.getElementById('generatedImage');
+
+  if (!img || !img.dataset.base64) {
+    showImageGenStatus('No image to download. Generate an image first.', 'error');
+    return;
+  }
+
+  // Create download link
+  const link = document.createElement('a');
+  const mimeType = img.dataset.mimeType || 'image/png';
+  const extension = mimeType.includes('png') ? 'png' : 'jpg';
+
+  link.href = `data:${mimeType};base64,${img.dataset.base64}`;
+  link.download = `thumbnail_${Date.now()}.${extension}`;
+  link.click();
+
+  showImageGenStatus('Image downloaded! ✓', 'success');
+}
+
+/**
+ * Show status message for image generation
+ */
+function showImageGenStatus(message, type = 'info') {
+  const statusDiv = document.getElementById('imageGenStatus');
+  if (!statusDiv) return;
+
+  // Set styles based on type
+  const styles = {
+    loading: 'background: #fef3c7; color: #92400e; border: 1px solid #fcd34d;',
+    success: 'background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7;',
+    error: 'background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;',
+    info: 'background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd;'
+  };
+
+  statusDiv.style.cssText = `display: block; margin-top: 12px; padding: 10px; border-radius: 8px; font-size: 12px; text-align: center; ${styles[type] || styles.info}`;
+  statusDiv.innerHTML = type === 'loading' ? `<span style="display: inline-block; animation: spin 1s linear infinite;">⏳</span> ${message}` : message;
+
+  // Auto-hide success messages
+  if (type === 'success') {
+    setTimeout(() => {
+      statusDiv.style.display = 'none';
+    }, 3000);
+  }
+}
+
+/**
+ * Initialize Image Generation System
+ */
+(function initImageGenerationSystem() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupImageGenListeners);
+  } else {
+    setTimeout(setupImageGenListeners, 200);
+  }
+
+  function setupImageGenListeners() {
+    console.log('🎨 Initializing Image Generation System v1.0...');
+
+    // Generate button
+    const generateBtn = document.getElementById('generateImageBtn');
+    if (generateBtn) {
+      generateBtn.addEventListener('click', generateBannerImage);
+    }
+
+    // Download button
+    const downloadBtn = document.getElementById('downloadImageBtn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', downloadGeneratedImage);
+    }
+
+    // Regenerate button (same as generate)
+    const regenerateBtn = document.getElementById('regenerateImageBtn');
+    if (regenerateBtn) {
+      regenerateBtn.addEventListener('click', generateBannerImage);
+    }
+
+    console.log('✅ Image Generation System initialized');
+  }
+})();
+
+console.log('📋 ScriptWriter Pro v12 + Visual Rendering v2.0 + Voice Anchor v2.0 + Image Gen v1.0 ready');
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// IMPORT JSON SYSTEM - Load analysis from VPH Analyzer exports
+// ═══════════════════════════════════════════════════════════════════════════════
+
+(function initImportJsonSystem() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupImportListeners);
+  } else {
+    setTimeout(setupImportListeners, 200);
+  }
+
+  function setupImportListeners() {
+    console.log('📥 Initializing Import JSON System...');
+
+    const importBtn = document.getElementById('importJsonBtn');
+    const importFile = document.getElementById('importJsonFile');
+
+    if (importBtn && importFile) {
+      // Button click triggers file input
+      importBtn.addEventListener('click', () => {
+        importFile.click();
+      });
+
+      // Handle file selection
+      importFile.addEventListener('change', handleJsonImport);
+
+      console.log('✅ Import JSON System initialized');
+    } else {
+      console.log('⚠️ Import JSON elements not found');
+    }
+  }
+
+  function handleJsonImport(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target.result);
+
+        // Handle array of analyses (batch export)
+        if (Array.isArray(data)) {
+          if (data.length > 0) {
+            loadAnalyzerData(data[0]);
+            showImportStatus(`✅ Imported 1 of ${data.length} analyses`, 'success');
+          }
+        } else {
+          // Single analysis object
+          loadAnalyzerData(data);
+          showImportStatus('✅ Analysis data imported successfully!', 'success');
+        }
+      } catch (err) {
+        console.error('Import error:', err);
+        showImportStatus('❌ Invalid JSON file: ' + err.message, 'error');
+      }
+    };
+    reader.readAsText(file);
+
+    // Reset file input
+    event.target.value = '';
+  }
+
+  function loadAnalyzerData(data) {
+    console.log('📥 Loading analyzer data:', data);
+
+    // Store in state
+    if (typeof state !== 'undefined') {
+      state.analyzerData = data;
+    }
+
+    // Extract metadata
+    const metadata = data.metadata || {};
+    const videoTitle = metadata.videoTitle || data.videoTitle || '';
+    const videoId = metadata.videoId || '';
+
+    // 1. Populate Topic field (Video Title)
+    const topicField = document.getElementById('topic');
+    if (topicField && videoTitle) {
+      topicField.value = videoTitle;
+      // Trigger char count update
+      const charCount = document.getElementById('topicCharCount');
+      if (charCount) charCount.textContent = videoTitle.length;
+    }
+
+    // 2. Populate Target Audience field (clean audience only)
+    const audienceField = document.getElementById('audience');
+    if (audienceField) {
+      // Use clean audience if available, else full audience
+      const audienceText = data.audience || '';
+      if (audienceText) {
+        audienceField.value = audienceText;
+      }
+    }
+
+    // 3. Populate Hook/Angle field (hook quote + hook type + about)
+    const angleField = document.getElementById('angle');
+    if (angleField) {
+      const hookParts = [];
+
+      // Hook type if available
+      if (data.hookType) {
+        hookParts.push(`🎯 Hook Type: ${data.hookType}`);
+      }
+
+      // Hook quote/exact words (primary content for cloning)
+      if (data.hookOnly) {
+        hookParts.push(`\n🎣 Hook Quote:\n"${data.hookOnly}"`);
+      }
+
+      // About video summary
+      if (data.aboutVideo) {
+        hookParts.push(`\n📝 About:\n${data.aboutVideo}`);
+      }
+
+      // Full hook analysis if no hookOnly available
+      if (!data.hookOnly && data.openingHook) {
+        hookParts.push(`\n🎣 Opening Hook Analysis:\n${data.openingHook}`);
+      }
+
+      // Title analysis
+      if (data.titleAnalysis) {
+        hookParts.push(`\n📊 Title Analysis:\n${data.titleAnalysis}`);
+      }
+
+      angleField.value = hookParts.join('\n') || data.rawAnalysis?.substring(0, 2000) || '';
+    }
+
+    // 4. Populate Context field (additional context or remaining data)
+    const contextField = document.getElementById('context');
+    if (contextField) {
+      // Use pre-built additionalContext if available
+      if (data.additionalContext) {
+        contextField.value = data.additionalContext;
+      } else if (data.rawAnalysis) {
+        // Fallback to raw analysis
+        contextField.value = '📋 Full Analysis:\n\n' +
+          (data.rawAnalysis.length > 3000 ? data.rawAnalysis.substring(0, 3000) + '...' : data.rawAnalysis);
+      }
+    }
+
+    // Show Clone Mode Selector
+    const cloneModeSelector = document.getElementById('cloneModeSelector');
+    if (cloneModeSelector) {
+      cloneModeSelector.style.display = 'block';
+    }
+
+    // Update source info
+    const sourceInfo = document.getElementById('analyzerSourceInfo');
+    if (sourceInfo) {
+      const source = metadata.analyzerVersion || 'VPH Analyzer';
+      sourceInfo.textContent = `📎 ${source}`;
+    }
+
+    // Update blueprint summary if available
+    if (data.blueprint) {
+      const bp = data.blueprint;
+      updateElement('bpDuration', bp.structure?.totalDuration || metadata.duration || '-');
+      updateElement('bpScenes', bp.structure?.estimatedSceneCount || '-');
+      const blueprintSummary = document.getElementById('blueprintSummary');
+      if (blueprintSummary) blueprintSummary.style.display = 'block';
+    }
+
+    // Update hook preview in blueprint
+    if (data.hookOnly || data.hookType) {
+      updateElement('bpHook', data.hookType || data.hookOnly?.substring(0, 20) + '...' || '-');
+    }
+
+    console.log('✅ Analyzer data loaded into form');
+  }
+
+  function updateElement(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  }
+
+  function showImportStatus(message, type) {
+    const statusDiv = document.getElementById('apiStatus');
+    if (!statusDiv) return;
+
+    const styles = {
+      success: 'background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7;',
+      error: 'background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;',
+      info: 'background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd;'
+    };
+
+    statusDiv.style.cssText = `display: block; margin-top: 12px; padding: 10px; border-radius: 8px; font-size: 12px; text-align: center; ${styles[type] || styles.info}`;
+    statusDiv.textContent = message;
+
+    if (type === 'success') {
+      setTimeout(() => statusDiv.style.display = 'none', 4000);
+    }
+  }
+})();
+
+console.log('📥 Import JSON System ready - Import VPH Analyzer exports!');

@@ -1,0 +1,26 @@
+<!-- TITAN MIND - 16x16 Static Icon for Chrome Toolbar -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E2A32"/>
+      <stop offset="100%" stop-color="#0D1117"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <path d="M8 0.5 L14.5 3.75 L14.5 12.25 L8 15.5 L1.5 12.25 L1.5 3.75 Z" fill="url(#bg)" stroke="#0A9396" stroke-width="0.5"/>
+  <!-- Neural Network -->
+  <g stroke="#A855F7" stroke-width="0.5" fill="none">
+    <line x1="6" y1="5" x2="8" y2="6.5"/>
+    <line x1="10" y1="5" x2="8" y2="6.5"/>
+    <line x1="8" y1="6.5" x2="8" y2="9"/>
+    <line x1="8" y1="9" x2="6" y2="11"/>
+    <line x1="8" y1="9" x2="10" y2="11"/>
+  </g>
+  <!-- Nodes -->
+  <circle cx="6" cy="5" r="1" fill="#83C5BE"/>
+  <circle cx="10" cy="5" r="1" fill="#83C5BE"/>
+  <circle cx="8" cy="6.5" r="1.25" fill="#A855F7"/>
+  <circle cx="8" cy="9" r="1.25" fill="#00FFC2"/>
+  <circle cx="6" cy="11" r="1" fill="#A855F7"/>
+  <circle cx="10" cy="11" r="1" fill="#A855F7"/>
+</svg>
