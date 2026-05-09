@@ -1,8 +1,8 @@
-// Service Worker for TITANSYS MIND v7.0.0
+// Service Worker for ScriptFlow v7.0.0
 // DO NOT add keep-alive mechanisms (alarms, offscreen, setInterval) — Chrome Web Store
 // MV3 policy forbids them. The side panel is persistent; the SW wakes on demand.
 
-console.log('🚀 TITANSYS MIND v7.0.0 Service Worker Started');
+console.log('🚀 ScriptFlow v7.0.0 Service Worker Started');
 
 // Handle icon click - Open side panel
 chrome.action.onClicked.addListener(async (tab) => {
@@ -17,7 +17,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 });
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('✅ TITANSYS MIND v7.0.0 installed');
+  console.log('✅ ScriptFlow v7.0.0 installed');
 });
 
 // ──────────────────────────────────────────────────────────────────────────────

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "TITANSYS MIND",
+  "name": "ScriptFlow",
   "version": "7.0.0",
-  "description": "AI Script & Prompt Generation - TITANSYS (Modular Architecture)",
+  "description": "AI YouTube script writer and Google VEO video prompt generator. Powered by Claude and Gemini. For content creators.",
   "permissions": [
     "storage",
     "sidePanel"
@@ -18,7 +18,7 @@
     "default_path": "sidepanel.html"
   },
   "action": {
-    "default_title": "TITANSYS MIND v7.0",
+    "default_title": "ScriptFlow — AI Script & VEO Generator",
     "default_icon": "icons/icon48.png"
   },
   "icons": {

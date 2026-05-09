@@ -50,56 +50,59 @@ Or use the Windows Snipping Tool with the browser resized to 1280×800.
 ### Short Description (≤132 characters)
 
 ```
-AI Script & Prompt Generation for YouTube — create scripts with Claude and VEO prompts with Gemini.
+AI YouTube script writer & Google VEO prompt generator. Powered by Claude and Gemini. Free to use with your own API keys.
 ```
-*(96 chars — within limit)*
+*(121 chars — within limit)*
 
-Alternative (more feature-focused):
-```
-Generate YouTube scripts with Claude AI and VEO video prompts with Gemini. Part of TITANSYS suite.
-```
-*(99 chars)*
-
-### Long Description (up to 16,000 chars — aim for 300–600 words)
+### Long Description (up to 16,000 chars — SEO + GEO optimized)
 
 ```
-TITANSYS MIND — AI Script & Prompt Generation
+ScriptFlow — AI YouTube Script Writer & VEO Video Prompt Generator
 
-Create professional YouTube scripts and Google Flow VEO 3 video prompts directly in your browser, powered by Claude (Anthropic) and Gemini (Google) using your own API keys.
+ScriptFlow is a Chrome extension that generates professional YouTube scripts and Google Flow VEO 3 video prompts directly in your browser, using Claude (Anthropic) and Gemini (Google) with your own API keys.
 
-── SCRIPT GENERATION ──
-• Claude AI integration — multiple templates: Editorial, Documentary, Tutorial, VSL, Shorts
-• Clone Mode — analyze top-performing videos and reproduce their structure (100% verbatim or 95% creative)
-• Auto-populate fields from TITANSYS SCOPE / TEXT analyzer data
-• AI Suggestions — auto-fill topic, audience, and angle from analyzed content
+No subscriptions. No servers. Your content stays yours.
 
-── VEO PROMPT GENERATION ──
-• Gemini AI integration for Google Flow VEO 3 prompts
-• Flow Extend format — scene-by-scene with timing, camera moves, and SFX descriptions
-• 25+ visual style dimensions (cinematography, mood, color, subject, environment)
-• Batch generation — handle 20+ scenes without timeouts
+── AI YOUTUBE SCRIPT WRITER ──
+• Generate full YouTube scripts in seconds with Claude AI
+• 5 script templates: Editorial, Documentary, Tutorial, VSL, YouTube Shorts
+• Clone Mode — reverse-engineer top-performing video structures (100% verbatim or 95% creative rewrite)
+• AI Suggestions — auto-fill topic, target audience, and hook angle
+• Supports Claude Sonnet 4, Claude 3.5 Sonnet, and Claude 3 Opus
 
-── ASSESSMENT & AUDIT ──
-• Prompt quality scoring — identify weak prompts before you generate
-• One-click auto-fix suggestions
-• Export reports as JSON, Markdown, or PDF
+── GOOGLE VEO VIDEO PROMPT GENERATOR ──
+• Generate Google Flow VEO 3 prompts scene by scene with Gemini AI
+• Flow Extend format — timing, camera movement, SFX, and subject descriptions per scene
+• 25+ visual style dimensions: cinematography style, mood, color palette, environment, and more
+• Batch generation for 20+ scenes without rate-limit errors
+• Supports Gemini 2.5 Flash, Gemini 2.0 Flash, and Gemini 1.5 Pro
 
-── SETTINGS & PRIVACY ──
-• Bring your own API keys — nothing is stored on our servers
-• All AI calls go directly from your browser to Anthropic / Google
-• Clear all local data any time from the Settings tab
+── PROMPT QUALITY AUDIT ──
+• Score your AI prompts before generating
+• Identify weak or vague language with one click
+• Auto-fix suggestions to improve output quality
+• Export audit reports as JSON, Markdown, or PDF
 
-── TITANSYS SUITE INTEGRATION ──
-Works seamlessly with other TITANSYS extensions:
-• Receives video analysis from TITANSYS SCOPE and TITANSYS TEXT
-• Sends VEO prompts to TITANSYS CORE for automation
+── PRIVACY-FIRST DESIGN ──
+• Bring your own Claude and Gemini API keys
+• Zero data sent to our servers — all AI calls go directly from your browser to Anthropic and Google
+• API keys and generated content stored locally on your device only
+• Clear all local data any time from Settings
+
+── WHO IS THIS FOR? ──
+ScriptFlow is built for:
+• YouTube content creators who want faster script production
+• Video producers working with Google Flow VEO 3
+• Marketing teams generating video ad scripts at scale
+• Educators and course creators structuring long-form video content
+• Faceless YouTube channel operators using AI video workflows
 
 ── REQUIREMENTS ──
-• Anthropic API key (console.anthropic.com) for script generation
-• Google Gemini API key (ai.google.dev) for VEO prompt generation
-• API usage is billed by Anthropic / Google at their standard rates
+• Anthropic API key for script generation — get one at console.anthropic.com
+• Google Gemini API key for VEO prompts — get one at ai.google.dev
+• API usage is billed directly by Anthropic / Google at standard rates
 
-Built for YouTube creators, video producers, and content teams who want AI-powered scripting without sacrificing control over their workflow.
+ScriptFlow replaces hours of manual scriptwriting and prompt engineering with a focused, browser-native AI workflow — no copy-pasting between tabs, no third-party platforms, no data leaving your browser.
 ```
 
 ---

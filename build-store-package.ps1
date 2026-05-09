@@ -2,7 +2,7 @@
 # Produces: titansys-mind-v7.0.0.zip (runtime files only, no dev artifacts)
 
 $version = "7.0.0"
-$outFile = "titansys-mind-v$version.zip"
+$outFile = "scriptflow-v$version.zip"
 $projectRoot = $PSScriptRoot
 
 # Files and directories to include in the store package
