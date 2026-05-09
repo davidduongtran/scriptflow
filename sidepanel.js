@@ -4528,8 +4528,14 @@ async function generateScript() {
   if (!topic) { showNotification('❌ Enter topic', 'error'); return; }
   if (!template) { showNotification('❌ Select template', 'error'); return; }
   if (!targetLength) { showNotification('❌ Select target length', 'error'); return; }
-  if (!state.settings.claudeApiKey) {
-    showNotification('❌ Configure API key in Settings', 'error');
+  const _aiModelForValidation = document.getElementById('modelSelect')?.value || '';
+  const _isGeminiSelected = _aiModelForValidation.startsWith('gemini');
+  if (_isGeminiSelected && !state.settings.geminiApiKey) {
+    showNotification('❌ Configure Gemini API key in Settings', 'error');
+    return;
+  }
+  if (!_isGeminiSelected && !state.settings.claudeApiKey) {
+    showNotification('❌ Configure Claude API key in Settings', 'error');
     return;
   }
 
