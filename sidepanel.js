@@ -3,6 +3,8 @@
 // YouTube Script Generation + VEO 3 Prompt Generation
 // ═══════════════════════════════════════════════════════════════════════════════
 
+const TITAN = window.TITAN || {};
+
 console.log('🚀 ScriptWriter Pro v9.0 Loading...');
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -2964,7 +2966,9 @@ async function loadSettings() {
     if (stored.settings) {
       state.settings = { ...state.settings, ...stored.settings };
       document.getElementById('apiKeyInput').value = state.settings.claudeApiKey || '';
-      document.getElementById('modelSelect').value = state.settings.aiModel || 'claude-sonnet-4-20250514';
+      document.getElementById('modelSelect').value = state.settings.aiModel || 'gemini-2.5-flash';
+      const veoModelSelect = document.getElementById('veoModelSelect');
+      if (veoModelSelect) veoModelSelect.value = state.settings.veoModel || 'gemini-2.5-pro';
 
       // Load character consistency settings
       document.getElementById('characterBible').value = state.settings.characterBible || '';
@@ -2984,12 +2988,14 @@ async function saveSettings() {
   const claudeApiKey = document.getElementById('apiKeyInput').value.trim();
   const geminiApiKey = document.getElementById('geminiApiKeyInput').value.trim();
   const aiModel = document.getElementById('modelSelect').value;
+  const veoModel = document.getElementById('veoModelSelect')?.value || 'gemini-2.5-pro';
   const characterBible = document.getElementById('characterBible').value.trim();
   const characterNegatives = document.getElementById('characterNegatives').value.trim();
 
   state.settings.claudeApiKey = claudeApiKey;
   state.settings.geminiApiKey = geminiApiKey;
   state.settings.aiModel = aiModel;
+  state.settings.veoModel = veoModel;
   state.settings.characterBible = characterBible;
   state.settings.characterNegatives = characterNegatives;
 
@@ -7607,13 +7613,14 @@ function displayAssessmentResults(assessment) {
   }
 
   // Show appropriate action buttons
+  const applyBtn = document.getElementById('applyAutoFixesBtn');
   if (assessment.status === 'PASS') {
     document.getElementById('sendToFlowAutomateBtn').style.display = 'block';
-    document.getElementById('applyAutoFixesBtn').style.display = 'none';
+    if (applyBtn) applyBtn.style.display = 'none';
     document.getElementById('reGeneratePromptsBtn').style.display = 'none';
   } else {
     document.getElementById('sendToFlowAutomateBtn').style.display = 'none';
-    document.getElementById('applyAutoFixesBtn').style.display = 'block';
+    if (applyBtn) applyBtn.style.display = 'block';
     document.getElementById('reGeneratePromptsBtn').style.display = 'block';
   }
 
