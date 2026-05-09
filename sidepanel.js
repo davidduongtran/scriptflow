@@ -7643,10 +7643,9 @@ async function sendToFlowAutomate() {
     (promptsText.match(/\n\n/g) || []).length + 1;
 
   try {
-    // Known FinRich Studio / FR Studio-S extension IDs
+    // Known Studio extension IDs for cross-extension messaging
     const KNOWN_STUDIO_IDS = [
       'egfmijeglahmgddfbogmkbpafhefimda', // FR Studio-S v2.0.0 (Smart Pipeline)
-      'ppmhfeekikdhkaacmcglhijaglcecodg', // FinRich Studio (Production)
     ];
 
     // Always try to discover which Studio extension is available
